@@ -1,0 +1,25 @@
+{
+  "name": "mmx/forms",
+  "license": "MIT",
+  "description": "Modern forms for MODX 3",
+  "authors": [
+    {
+      "name": "Vasily Naumkin",
+      "email": "bezumkin@yandex.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MMX\\Forms\\": "core/src/"
+    }
+  },
+  "bin": [
+    "bin/mmx-forms"
+  ],
+  "require": {
+    "php": ">=8.1",
+    "ramsey/uuid": "^4.7.5",
+    "vesp/core": "^4.0",
+    "mmx/database": "^1.0.0"
+  }
+}

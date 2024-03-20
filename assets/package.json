@@ -1,0 +1,44 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "eslint": "eslint --ext .js,.vue ./src",
+    "eslint:fix": "eslint --fix --ext .js,.vue ./src",
+    "stylelint": "stylelint ./src/assets/scss",
+    "stylelint:fix": "stylelint --fix --quiet ./src/assets/scss"
+  },
+  "dependencies": {
+    "@codemirror/lang-html": "^6.4.8",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@vueform/vueform": "^1.9.1",
+    "@vueuse/core": "^10.9.0",
+    "bootstrap-scss": "^5.3.0",
+    "bootstrap-vue-next": "0.16.6",
+    "ofetch": "^1.3.3",
+    "vite-plugin-pages": "^0.32.0",
+    "vue": "^3.4.21",
+    "vue-codemirror": "^6.1.1",
+    "vue-router": "^4.3.0",
+    "vue-toastification": "^2.0.0-rc.5"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@types/prismjs": "^1.26.3",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.4",
+    "sass": "^1.61.0",
+    "stylelint": "^15.2.0",
+    "stylelint-config-standard-scss": "^7.0.1",
+    "unplugin-auto-import": "^0.15.2",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^5.1.5",
+    "vite-plugin-eslint": "^1.8.1"
+  }
+}

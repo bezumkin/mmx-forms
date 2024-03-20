@@ -1,0 +1,14 @@
+.mmx-modal {
+
+  .modal-header {
+    background-color: var(--bs-light);
+    .modal-title {
+      margin: 0;
+    }
+  }
+
+  .modal-footer {
+    background-color: var(--bs-light);
+    justify-content: space-between;
+  }
+}

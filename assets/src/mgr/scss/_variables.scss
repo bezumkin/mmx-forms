@@ -1,0 +1,16 @@
+$primary: #508237;
+$success: #6cb24a;
+$warning: #ffce00;
+$danger: #cf1124;
+$link-color: #234368;
+
+$modal-header-border-color: transparent;
+$modal-footer-border-color: transparent;
+
+@import "bootstrap-scss/functions";
+@import "bootstrap-scss/variables";
+// @import "bootstrap-scss/variables-dark";
+@import "bootstrap-scss/maps";
+@import "bootstrap-scss/mixins";
+@import "bootstrap-scss/utilities";
+@import "bootstrap-scss/root";

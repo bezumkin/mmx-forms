@@ -1,0 +1,43 @@
+@import "variables";
+
+.mmx-app {
+  font-size: 14px;
+
+  //@import "bootstrap-scss/bootstrap";
+  @import "bootstrap-scss/reboot";
+  @import "bootstrap-scss/grid";
+  @import "bootstrap-scss/containers";
+  @import "bootstrap-scss/nav";
+  @import "bootstrap-scss/forms";
+  @import "bootstrap-scss/tables";
+  @import "bootstrap-scss/pagination";
+  @import "bootstrap-scss/buttons";
+  @import "bootstrap-scss/dropdown";
+  @import "bootstrap-scss/type";
+  @import "bootstrap-scss/alert";
+  @import "bootstrap-scss/close";
+  @import "bootstrap-scss/spinners";
+  @import "bootstrap-scss/transitions";
+  @import "bootstrap-scss/helpers";
+  @import "bootstrap-scss/utilities/api";
+
+  @import '../../../mmx/scss/components';
+
+  form {
+    fieldset:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .cm-editor {
+    font-size: 14px;
+  }
+}
+
+.vueform-app {
+  @import '@vueform/vueform/themes/bootstrap/scss/index';
+}
+
+@import "bootstrap-scss/modal";
+@import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
+@import '../../../mmx/scss/toast';
