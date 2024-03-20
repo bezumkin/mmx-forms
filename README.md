@@ -26,7 +26,7 @@ This package can be installed only with Composer.
 If you are still not using Composer with MODX 3, just download the `composer.json` of your version:
 ```bash
 cd /to/modx/root/
-wget https://github.com/modxcms/revolution/blob/v3.0.4-pl/composer.json
+wget https://raw.githubusercontent.com/modxcms/revolution/v3.0.4-pl/composer.json
 ```
 
 Then run `composer update` and you are ready to install the **mmx** packages.
@@ -34,7 +34,7 @@ Then run `composer update` and you are ready to install the **mmx** packages.
 ### Install
 
 ```bash
-composer require mmx/database
+composer require mmx/forms
 composer exec mmx-database install # optional, if you haven't used Eloquent for MODX 3 before
 composer exec mmx-forms install
 ```
