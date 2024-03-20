@@ -15,11 +15,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Console extends Application
 {
     protected modX $modx;
+    protected App $app;
 
     public function __construct(modX $modx)
     {
         parent::__construct(App::NAME);
         $this->modx = $modx;
+        $this->app = new App($modx);
     }
 
     public function doRun(InputInterface $input, OutputInterface $output)
