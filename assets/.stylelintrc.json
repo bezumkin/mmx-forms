@@ -1,7 +1,0 @@
-{
-  "extends": "stylelint-config-standard-scss",
-  "rules": {
-    "no-invalid-position-at-import-rule": 0,
-    "scss/at-import-partial-extension": 0
-  }
-}

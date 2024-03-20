@@ -3,10 +3,12 @@
 
 # Exclude unused files
 # see: https://redd.it/2jzp6k
+/assets/mmx                 export-ignore
 /assets/src                 export-ignore
-/assets/.eslintrc.cjs       export-ignore
-/assets/.prettierrc         export-ignore
+/assets/.eslintrc.json      export-ignore
+/assets/.prettierrc.json    export-ignore
 /assets/.stylelintrc.json   export-ignore
+/assets/common.config.ts    export-ignore
 /assets/package.json        export-ignore
 /assets/package-lock.json   export-ignore
 /assets/tsconfig.json       export-ignore
@@ -14,3 +16,6 @@
 /assets/vite.config.ts      export-ignore
 /.gitattributes             export-ignore
 /.gitignore                 export-ignore
+/LICENSE.md                 export-ignore
+/README.md                  export-ignore
+
