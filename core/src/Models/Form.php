@@ -50,6 +50,8 @@ class Form extends Model
 
     public function getFormKey(): string
     {
+        Token::query()->where('created_at', '<', Carbon::now()->subHours(12))->delete();
+
         return $this->Tokens()->create(['token' => Uuid::uuid4()])->token;
     }
 
