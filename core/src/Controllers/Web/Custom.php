@@ -20,13 +20,15 @@ class Custom extends Controller
 
     public function get(): ResponseInterface
     {
-        $name = 'mmxFormsCustom' . ucfirst($this->getProperty('snippet'));
+        $tmp = explode('-', $this->getProperty('snippet'));
+        $tmp = array_map('ucfirst', $tmp);
+        $name = 'mmxFormsCustom' . implode('', $tmp);
         if (Snippet::query()->where('name', $name)->count()) {
             $response = $this->modx->runSnippet($name);
 
             return $this->success($response);
         }
 
-        return $this->failure('Not Found', 404);
+        return $this->failure('Could not load the "' . $name . '" snippet', 404);
     }
 }
