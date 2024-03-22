@@ -128,27 +128,17 @@ class App
         $script = 'src/' . ($instance instanceof modX ? 'web' : 'mgr') . '.ts';
         $manifest = MODX_ASSETS_PATH . 'components/' . self::NAMESPACE . '/manifest.json';
 
-        if (file_exists($manifest) && $files = json_decode(file_get_contents($manifest), true)) {
+        $context = $instance instanceof modX ? 'web' : 'mgr';
+        $assets = self::getAssetsFromManifest($context);
+        if ($assets) {
             // Production mode
-            if (empty($files[$script])) {
-                return;
-            }
-            $file = $files[$script];
-            if ($instance instanceof modX) {
-                $instance->regClientHTMLBlock(
-                    '<script type="module" src="' . $baseUrl . $file['file'] . '"></script>'
-                );
-                if (!$noCss && !empty($file['css'])) {
-                    foreach ($file['css'] as $css) {
-                        $instance->regClientCss($baseUrl . $css);
-                    }
-                }
-            } else {
-                $instance->addHtml('<script type="module" src="' . $baseUrl . $file['file'] . '"></script>');
-                if (!empty($file['css'])) {
-                    foreach ($file['css'] as $css) {
-                        $instance->addCss($baseUrl . $css);
-                    }
+            $jsMethod = $context === 'mgr' ? 'addHtml' : 'regClientHTMLBlock';
+            $cssMethod = $context === 'mgr' ? 'addCss' : 'regClientCss';
+            foreach ($assets as $file) {
+                if (str_ends_with($file, '.js')) {
+                    $instance->$jsMethod('<script type="module" src="' . $file . '"></script>');
+                } elseif (!$noCss) {
+                    $instance->$cssMethod($file);
                 }
             }
         } else {
@@ -167,6 +157,35 @@ class App
                 }
             }
         }
+    }
+
+    protected static function getAssetsFromManifest(string $context): ?array
+    {
+        $script = 'src/' . $context . '.ts';
+        $baseUrl = MODX_ASSETS_URL . 'components/' . self::NAMESPACE . '/';
+        $manifest = MODX_ASSETS_PATH . 'components/' . self::NAMESPACE . '/manifest.json';
+
+        if (file_exists($manifest) && $files = json_decode(file_get_contents($manifest), true)) {
+            $assets = [];
+            if (!empty($files[$script])) {
+                $file = $files[$script];
+                $assets[] = $baseUrl . $file['file'];
+                foreach ($file['css'] as $css) {
+                    $assets[] = $baseUrl . $css;
+                }
+                foreach ($files as $key => $value) {
+                    if (!empty($value['css']) && str_contains($key, 'vueform')) {
+                        foreach ($value['css'] as $css) {
+                            $assets[] = $baseUrl . $css;
+                        }
+                    }
+                }
+
+                return $assets;
+            }
+        }
+
+        return null;
     }
 
     public static function prepareLexicon(array $arr, string $prefix = ''): array

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import en from '@vueform/vueform/locales/en'
-import bootstrap from '@vueform/vueform/dist/bootstrap'
+import theme from '@vueform/vueform/themes/bootstrap'
 import axios from 'axios'
 // eslint-disable-next-line
 import {defineConfig} from '@vueform/vueform'
@@ -35,7 +35,7 @@ export const toastOptions = {
 }
 
 export const vueFormConfig = defineConfig({
-  theme: bootstrap,
+  theme,
   locales: {en},
   locale: 'en',
   axios: customAxios,
