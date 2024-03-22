@@ -48,9 +48,9 @@ $_tmp = [
                 'message' => 'Replace form with a message',
                 'message_desc' => 'Please, enter the message that you want to show to the user. You can use HTML tags.',
             ],
-            'help_text' => 'Please use <a href="https://builder.vueform.com/demo" target="_blank">Vueform Builder</a> to create a form and then paste its schema here.<br/><br/>' .
-                'Go to the "Export" tab in the right pane, then select the "Schema Object" output and copy the contents of the "schema" variable of the code in the middle pane.<br/><br/>' .
-                "The value should be something like: <pre><code>{\n  name: {type: 'text', label: 'Your name', rules: ['required']},\n  submit: {type: 'button', buttonLabel: 'Submit!', submits: true},\n}</code></pre>" .
+            'help_text' => 'Please use <a href="https://builder.vueform.com/demo?v=dev" target="_blank">Vueform Builder</a> to create a form and then paste its schema here.<br/><br/>' .
+                'Go to the "Export" tab in the right pane, then select the "Schema Object" output and copy the contents of the "vueform" variable of the code in the middle pane.<br/><br/>' .
+                "The value should be something like: <pre><code>{\n  schema: {\n    name: {type: 'text', label: 'Your name', rules: ['required']},\n    submit: {type: 'button', buttonLabel: 'Submit!', submits: true},\n  }\n}</code></pre>" .
                 'The preview tab only works if the schema can be parsed correctly. Which does not guarantee the correctness of this scheme.',
         ],
         'submission' => [
