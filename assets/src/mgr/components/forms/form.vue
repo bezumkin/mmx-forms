@@ -16,7 +16,7 @@
       </BTab>
       <BTab :title="$t('models.form.preview')" :disabled="!canPreview" lazy>
         <div class="vueform-app bg-light p-3 border rounded">
-          <Vueform v-bind="properties" />
+          <AppVueform :schema="record.schema" disabled />
         </div>
       </BTab>
       <BTab :title="$t('models.form.help')">
@@ -54,32 +54,11 @@ const record: WritableComputedRef<Record<string, any>> = computed({
     emit('update:modelValue', newValue)
   },
 })
-const canPreview = computed(() => Boolean(checkSchema(record.value)))
-
-function checkSchema(values: Record<string, any>) {
-  try {
-    // eslint-disable-next-line no-eval
-    const obj = eval('(' + values.schema + ')')
-    if (obj) {
-      return obj
-    }
-  } catch (e) {
-    return false
-  }
-}
+const canPreview = computed(() => Boolean(useCheckSchema(record.value)))
 
 function verify(values: Record<string, any>) {
-  return checkSchema(values) ? values : useLexicon('errors.form.schema')
+  return useCheckSchema(values) ? values : useLexicon('errors.form.schema')
 }
-
-const properties = computed(() => {
-  const data = {disabled: true}
-  const schema = checkSchema(record.value)
-  if (schema) {
-    return 'schema' in schema ? {...schema, ...data} : {...data, schema}
-  }
-  return data
-})
 
 defineExpose({verify})
 </script>
