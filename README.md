@@ -34,7 +34,7 @@ Then run `composer update` and you are ready to install the **mmx** packages.
 ### Install
 
 ```bash
-composer require mmx/forms
+composer require mmx/forms --update-no-dev
 composer exec mmx-database install # optional, if you haven't used Eloquent for MODX 3 before
 composer exec mmx-forms install
 ```
