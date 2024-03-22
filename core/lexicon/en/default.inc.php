@@ -14,7 +14,9 @@ $_tmp = [
         'submit' => 'Submit',
         'close' => 'Close',
         'ok' => 'Ok',
-        'sent' => 'Send',
+        'send' => 'Send',
+        'view' => 'View',
+        'generate' => 'Generate',
         'delete_unsent' => 'Delete unsent',
     ],
     'models' => [
