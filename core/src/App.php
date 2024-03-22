@@ -126,44 +126,44 @@ class App
     {
         $baseUrl = MODX_ASSETS_URL . 'components/' . self::NAMESPACE . '/';
         $script = 'src/' . ($instance instanceof modX ? 'web' : 'mgr') . '.ts';
+        $manifest = MODX_ASSETS_PATH . 'components/' . self::NAMESPACE . '/manifest.json';
 
-        $port = getenv('NODE_DEV_PORT') ?: '9090';
-        $connection = @fsockopen('node', $port);
-        if (is_resource($connection)) {
-            // Development mode
-            $server = explode(':', MODX_HTTP_HOST);
-            $vite = MODX_URL_SCHEME . $server[0] . ':' . $port . $baseUrl;
+        if (file_exists($manifest) && $files = json_decode(file_get_contents($manifest), true)) {
+            // Production mode
+            if (empty($files[$script])) {
+                return;
+            }
+            $file = $files[$script];
             if ($instance instanceof modX) {
-                $instance->regClientHTMLBlock('<script type="module" src="' . $vite . '@vite/client"></script>');
-                $instance->regClientHTMLBlock('<script type="module" src="' . $vite . $script . '"></script>');
+                $instance->regClientHTMLBlock(
+                    '<script type="module" src="' . $baseUrl . $file['file'] . '"></script>'
+                );
+                if (!$noCss && !empty($file['css'])) {
+                    foreach ($file['css'] as $css) {
+                        $instance->regClientCss($baseUrl . $css);
+                    }
+                }
             } else {
-                $instance->addHtml('<script type="module" src="' . $vite . '@vite/client"></script>');
-                $instance->addHtml('<script type="module" src="' . $vite . $script . '"></script>');
+                $instance->addHtml('<script type="module" src="' . $baseUrl . $file['file'] . '"></script>');
+                if (!empty($file['css'])) {
+                    foreach ($file['css'] as $css) {
+                        $instance->addCss($baseUrl . $css);
+                    }
+                }
             }
         } else {
-            // Production mode
-            $manifest = MODX_ASSETS_PATH . 'components/' . self::NAMESPACE . '/manifest.json';
-            if (file_exists($manifest) && $files = json_decode(file_get_contents($manifest), true)) {
-                if (empty($files[$script])) {
-                    return;
-                }
-                $file = $files[$script];
+            // Development mode
+            $port = getenv('NODE_DEV_PORT') ?: '9090';
+            $connection = @fsockopen('node', $port);
+            if (@is_resource($connection)) {
+                $server = explode(':', MODX_HTTP_HOST);
+                $vite = MODX_URL_SCHEME . $server[0] . ':' . $port . $baseUrl;
                 if ($instance instanceof modX) {
-                    $instance->regClientHTMLBlock(
-                        '<script type="module" src="' . $baseUrl . $file['file'] . '"></script>'
-                    );
-                    if (!$noCss && !empty($file['css'])) {
-                        foreach ($file['css'] as $css) {
-                            $instance->regClientCss($baseUrl . $css);
-                        }
-                    }
+                    $instance->regClientHTMLBlock('<script type="module" src="' . $vite . '@vite/client"></script>');
+                    $instance->regClientHTMLBlock('<script type="module" src="' . $vite . $script . '"></script>');
                 } else {
-                    $instance->addHtml('<script type="module" src="' . $baseUrl . $file['file'] . '"></script>');
-                    if (!empty($file['css'])) {
-                        foreach ($file['css'] as $css) {
-                            $instance->addCss($baseUrl . $css);
-                        }
-                    }
+                    $instance->addHtml('<script type="module" src="' . $vite . '@vite/client"></script>');
+                    $instance->addHtml('<script type="module" src="' . $vite . $script . '"></script>');
                 }
             }
         }
