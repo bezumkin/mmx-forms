@@ -1,7 +1,7 @@
 <template>
   <Transition mode="out-in" name="fade">
     <div v-if="msgAction" v-html="msgAction" />
-    <Vueform v-else ref="form" v-model="record" :endpoint="false" :schema="schema" @submit="onSubmit" />
+    <Vueform v-else ref="form" v-model="record" v-bind="properties" />
   </Transition>
 </template>
 
@@ -25,6 +25,14 @@ const form = ref()
 const formId = ref(props.id)
 const msgSuccess = useLexicon('success.form.submitted')
 const msgAction = ref()
+const properties = computed(() => {
+  const data = {
+    endpoint: false,
+    onSubmit,
+  }
+
+  return 'schema' in props.schema ? {...props.schema, ...data} : {...data, schema: props.schema}
+})
 
 async function onSubmit() {
   loading.value = true

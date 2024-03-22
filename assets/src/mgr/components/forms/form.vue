@@ -16,7 +16,7 @@
       </BTab>
       <BTab :title="$t('models.form.preview')" :disabled="!canPreview" lazy>
         <div class="vueform-app bg-light p-3 border rounded">
-          <Vueform :schema="checkSchema(record)" disabled />
+          <Vueform v-bind="properties" />
         </div>
       </BTab>
       <BTab :title="$t('models.form.help')">
@@ -71,6 +71,15 @@ function checkSchema(values: Record<string, any>) {
 function verify(values: Record<string, any>) {
   return checkSchema(values) ? values : useLexicon('errors.form.schema')
 }
+
+const properties = computed(() => {
+  const data = {disabled: true}
+  const schema = checkSchema(record.value)
+  if (schema) {
+    return 'schema' in schema ? {...schema, ...data} : {...data, schema}
+  }
+  return data
+})
 
 defineExpose({verify})
 </script>
