@@ -6,23 +6,6 @@ $variable-prefix: 'vf-';
 @import "bootstrap-scss/mixins";
 @import "bootstrap-scss/utilities";
 @import "bootstrap-scss/root";
-
-.mmx-forms {
-  //@import "bootstrap-scss/reboot";
-  //@import "bootstrap-scss/grid";
-  //@import "bootstrap-scss/containers";
-  //@import "bootstrap-scss/nav";
-  //@import "bootstrap-scss/forms";
-  //@import "bootstrap-scss/buttons";
-  @import "bootstrap-scss/spinners";
-  //@import "bootstrap-scss/type";
-  //@import "bootstrap-scss/alert";
-  //@import "bootstrap-scss/close";
-  //@import "bootstrap-scss/transitions";
-  //@import "bootstrap-scss/helpers";
-  @import "bootstrap-scss/utilities/api";
-  @import '@vueform/vueform/themes/bootstrap/scss/index.scss';
-}
-
+@import '@vueform/vueform/themes/bootstrap/scss/index.scss';
 @import '../../../mmx/scss/toast';
 

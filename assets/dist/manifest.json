@@ -272,12 +272,11 @@
     ]
   },
   "src/web.ts": {
-    "file": "assets/web-BBIQ2ZXa.js",
+    "file": "assets/web-CSGuCqfg.js",
     "src": "src/web.ts",
     "isEntry": true,
     "imports": [
       "_vue-CtCNMA3P.js",
-      "_bootstrap-vue-next-DWmnrxyd.js",
       "_vueform-bjGVKQ0y.js",
       "_vue-toastification-BdZxUhs9.js",
       "_use-api-CABo2mPT.js",
@@ -292,7 +291,7 @@
       "_ufo-DbHr4xTX.js"
     ],
     "css": [
-      "assets/web-BNIOypO2.css"
+      "assets/web-Weybd41i.css"
     ]
   }
 }

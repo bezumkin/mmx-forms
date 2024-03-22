@@ -19,7 +19,6 @@ const props = defineProps({
   },
 })
 
-const loading = ref(false)
 const record = ref({})
 const form = ref()
 const formId = ref(props.id)
@@ -35,7 +34,6 @@ const properties = computed(() => {
 })
 
 async function onSubmit() {
-  loading.value = true
   try {
     const data = await usePost('web/forms/' + formId.value, record.value)
     form.value.reset()
@@ -51,9 +49,6 @@ async function onSubmit() {
     } else if (msgSuccess.length > 0) {
       useToastSuccess(msgSuccess)
     }
-  } catch (e) {
-  } finally {
-    loading.value = false
-  }
+  } catch (e) {}
 }
 </script>
