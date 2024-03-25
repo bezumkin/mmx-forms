@@ -12,6 +12,9 @@ const record = ref({
   title: '',
   schema: '',
   active: true,
+  prepare_id: null,
+  emails: null,
+  action: null,
 })
 
 const properties = {

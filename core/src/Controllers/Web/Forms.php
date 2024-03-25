@@ -3,6 +3,7 @@
 namespace MMX\Forms\Controllers\Web;
 
 use Illuminate\Database\Capsule\Manager;
+use MMX\Database\Models\Snippet;
 use MMX\Forms\Models\Submission;
 use MMX\Forms\Models\Token;
 use MODX\Revolution\modX;
@@ -40,7 +41,18 @@ class Forms extends Controller
 
         $values = $this->getProperties();
         unset($values['uuid']);
-        if ($error = $form->validateForm($values)) {
+
+        if ($snippet = $form->PrepareSnippet()->first()) {
+            /** @var Snippet $snippet */
+            $data = ['form' => $form->toArray(), 'values' => $values];
+            if ($result = $this->modx->runSnippet($snippet->name, $data)) {
+                if (is_array($result)) {
+                    $values = $result;
+                } else {
+                    return $this->failure($result);
+                }
+            }
+        } elseif ($error = $form->validateForm($values)) {
             return $this->failure($error);
         }
 
@@ -52,14 +64,22 @@ class Forms extends Controller
         $token->delete();
 
         if ($action = $form->action) {
-            if ($action['type'] === 'redirect' && is_numeric($action['value'])) {
-                $action['value'] = $this->modx->makeUrl((int)$action['value'], '', '', 'full');
+            if ($action['type'] === 'snippet' && $snippet = Snippet::query()->find((int)$action['value'])) {
+                /** @var Snippet $snippet */
+                $data = ['form' => $form->toArray(), 'values' => $submission->values];
+                $action = $this->modx->runSnippet($snippet->name, $data);
             }
 
-            return $this->success(['action' => $action]);
+            if ($action && is_array($action) && in_array($action['type'], ['redirect', 'message'], true)) {
+                if ($action['type'] === 'redirect' && is_numeric($action['value'])) {
+                    $action['value'] = $this->modx->makeUrl((int)$action['value'], '', '', 'full');
+                }
+
+                return $this->success(['action' => $action]);
+            }
         }
 
-        return $this->success(['id' => $form->getFormKey()]);
+        return $this->success(['id' => $form->getFormKey(), 'action' => $action]);
     }
 
     /*

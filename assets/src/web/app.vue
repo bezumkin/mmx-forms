@@ -45,6 +45,8 @@ async function onSubmit() {
         msgAction.value = data.action.value
       } else if (data.action.type === 'redirect') {
         window.location = data.action.value
+      } else if (data.action.type === 'reset' && data.action.value) {
+        useToastSuccess(data.action.value)
       }
     } else if (msgSuccess.length > 0) {
       useToastSuccess(msgSuccess)

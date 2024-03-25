@@ -33,6 +33,8 @@ $_tmp = [
             'settings' => 'Form Settings',
             'action' => 'Action',
             'action_desc' => 'What to do after successfully submitting the form',
+            'prepare_snippet' => 'Prepare Snippet',
+            'prepare_snippet_desc' => 'Snippet will receive an array with 2 keys: "form" and "values", and should return an array with changed values, or an error message or null',
             'emails' => [
                 'add' => 'Add new recipient',
                 'desc' => 'You can specify the keys of form as placeholders.<br/>For example, you can write "Thank you, [[+name]]!" in the subject.',
@@ -47,6 +49,8 @@ $_tmp = [
                 'redirect_desc' => 'You can specify an url or id of MODX page.',
                 'message' => 'Replace form with a message',
                 'message_desc' => 'Please, enter the message that you want to show to the user. You can use HTML tags.',
+                'snippet' => 'Get action from a snippet',
+                'snippet_desc' => 'Snippet will receive an array with 2 keys: "form" and "values", and should return an array of format ["type" => "reset|message|redirect", "value" => "string|html|url"]',
             ],
             'help_text' => 'Please use <a href="https://builder.vueform.com/demo?v=dev" target="_blank">Vueform Builder</a> to create a form and then paste its schema here.<br/><br/>' .
                 'Go to the "Export" tab in the right pane, then select the "Schema Object" output and copy the contents of the "vueform" variable of the code in the middle pane.<br/><br/>' .
@@ -98,7 +102,7 @@ $_tmp = [
         'forms' => [
             'id' => 'The id of form to output',
             'no_css' => 'Do not register frontend CSS so you could use your own styles',
-        ]
+        ],
     ],
 ];
 

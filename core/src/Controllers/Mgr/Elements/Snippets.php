@@ -3,12 +3,12 @@
 namespace MMX\Forms\Controllers\Mgr\Elements;
 
 use Illuminate\Database\Eloquent\Builder;
-use MMX\Database\Models\Chunk;
+use MMX\Database\Models\Snippet;
 use Vesp\Controllers\ModelGetController;
 
-class Chunks extends ModelGetController
+class Snippets extends ModelGetController
 {
-    protected string $model = Chunk::class;
+    protected string $model = Snippet::class;
 
     protected function beforeCount(Builder $c): Builder
     {

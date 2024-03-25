@@ -5,6 +5,7 @@ namespace MMX\Forms;
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
 use MMX\Forms\Controllers\Mgr\Elements\Chunks;
+use MMX\Forms\Controllers\Mgr\Elements\Snippets;
 use MMX\Forms\Controllers\Mgr\Emails;
 use MMX\Forms\Controllers\Mgr\Forms;
 use MMX\Forms\Controllers\Mgr\Submissions;
@@ -110,6 +111,7 @@ class App
                 $group->any('/submissions[/{id:\d+}]', Submissions::class);
                 $group->any('/emails[/{id:\d+}]', Emails::class);
                 $group->any('/elements/chunks[/{id:\d+}]', Chunks::class);
+                $group->any('/elements/snippets[/{id:\d+}]', Snippets::class);
             }
         )->add(Mgr::class);
 

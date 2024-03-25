@@ -8,7 +8,7 @@
       <BFormCheckbox v-model="record.active">{{ $t('models.form.active') }}</BFormCheckbox>
     </BFormGroup>
 
-    <BTabs content-class="pt-2">
+    <BTabs content-class="pt-2 mb-3">
       <BTab :title="$t('models.form.schema')">
         <div class="form-control p-0 overflow-hidden">
           <Codemirror v-model="record.schema" :extensions="[javascript()]" :style="{height: '400px'}" />
@@ -24,7 +24,16 @@
       </BTab>
     </BTabs>
 
-    <BFormGroup class="mt-4">
+    <BFormGroup :label="$t('models.form.prepare_snippet')" :description="$t('models.form.prepare_snippet_desc')">
+      <MmxInputComboBox v-model="record.prepare_id" url="mgr/elements/snippets" text-field="name">
+        <template #default="{item}">
+          <div v-if="item.category?.id" class="small text-secondary">{{ item.category.category }} /</div>
+          {{ item.name }}
+        </template>
+      </MmxInputComboBox>
+    </BFormGroup>
+
+    <BFormGroup>
       <BFormCheckbox v-model="record.email">{{ $t('models.form.email') }}</BFormCheckbox>
       <FormsFormEmails v-if="record.email" v-model="record.emails" class="p-2 bg-light rounded" />
     </BFormGroup>

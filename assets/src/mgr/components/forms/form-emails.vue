@@ -31,7 +31,12 @@
         <BFormInput v-model="form.subject" />
       </BFormGroup>
       <BFormGroup :label="$t('models.form.emails.chunk')">
-        <MmxInputComboBox v-model="form.chunk" url="mgr/elements/chunks" text-field="name" />
+        <MmxInputComboBox v-model="form.chunk" url="mgr/elements/chunks" text-field="name">
+          <template #default="{item}">
+            <div v-if="item.category?.id" class="small text-secondary">{{ item.category.category }} /</div>
+            {{ item.name }}
+          </template>
+        </MmxInputComboBox>
       </BFormGroup>
 
       <BAlert :model-value="true" variant="light">

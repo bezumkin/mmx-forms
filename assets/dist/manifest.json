@@ -117,7 +117,7 @@
     ]
   },
   "src/mgr.ts": {
-    "file": "assets/mgr-9yS0AiJt.js",
+    "file": "assets/mgr-DtkTH9Os.js",
     "src": "src/mgr.ts",
     "isEntry": true,
     "imports": [
@@ -154,7 +154,7 @@
     ]
   },
   "src/mgr/pages/emails.vue": {
-    "file": "assets/emails-B1P4qEiH.js",
+    "file": "assets/emails-Y7zRZPfs.js",
     "src": "src/mgr/pages/emails.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -184,7 +184,7 @@
     ]
   },
   "src/mgr/pages/emails/[id]/view.vue": {
-    "file": "assets/view-D--Kx531.js",
+    "file": "assets/view-Cw54t5yd.js",
     "src": "src/mgr/pages/emails/[id]/view.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -213,7 +213,7 @@
     ]
   },
   "src/mgr/pages/submissions.vue": {
-    "file": "assets/submissions-Dw4dqVZ0.js",
+    "file": "assets/submissions-C_PdzYys.js",
     "src": "src/mgr/pages/submissions.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -243,7 +243,7 @@
     ]
   },
   "src/mgr/pages/submissions/[id]/view.vue": {
-    "file": "assets/view-CzdulWKg.js",
+    "file": "assets/view-DX7at-NR.js",
     "src": "src/mgr/pages/submissions/[id]/view.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -272,7 +272,7 @@
     ]
   },
   "src/web.ts": {
-    "file": "assets/web-CSGuCqfg.js",
+    "file": "assets/web-yPTCAuDi.js",
     "src": "src/web.ts",
     "isEntry": true,
     "imports": [
