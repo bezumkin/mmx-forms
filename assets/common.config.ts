@@ -1,21 +1,25 @@
 // @ts-nocheck
 import en from '@vueform/vueform/locales/en'
 import theme from '@vueform/vueform/themes/bootstrap'
-import axios from 'axios'
+import axiosDefault from 'axios'
 // eslint-disable-next-line
 import {defineConfig} from '@vueform/vueform'
 import {POSITION} from 'vue-toastification'
 
-const customAxios = axios.create({
+export const axios = axiosDefault.create({
   baseURL: '/mmx-forms/',
 })
-customAxios.interceptors.response.use(
-  function (config) {
-    return config
+axios.CancelToken = axiosDefault.CancelToken
+axios.isCancel = axiosDefault.isCancel
+
+axios.interceptors.response.use(
+  function (response) {
+    return response.data
   },
   function (error) {
     if (error.response && error.response.data && typeof error.response.data === 'string') {
-      useToastError(useLexicon(error.response.data))
+      const message = error.response.data.includes('.') ? useLexicon(error.response.data) : error.response.data
+      useToastError(message)
     }
 
     return Promise.reject(error.response)
@@ -38,23 +42,22 @@ export const vueFormConfig = defineConfig({
   theme,
   locales: {en},
   locale: 'en',
-  axios: customAxios,
+  axios,
   endpoints: {
     submit: {
       url: '/web/forms',
       method: 'post',
     },
-    uploadTempFile: {
-      url: '/web/forms/file/upload-temp',
-      method: 'post',
+    uploadTempFile(file: File, {form$}) {
+      console.log(file, form$.formKey)
     },
     removeTempFile: {
-      url: '/web/forms/file/remove-temp',
-      method: 'post',
+      url: '/web/files/remove',
+      method: 'delete',
     },
     removeFile: {
-      url: '/web/forms/file/remove',
-      method: 'post',
+      url: '/web/files/remove',
+      method: 'delete',
     },
     attachment: {
       url: '/web/editor/attachment',

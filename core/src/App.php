@@ -145,8 +145,8 @@ class App
             }
         } else {
             // Development mode
-            $port = getenv('NODE_DEV_PORT') ?: '9090';
-            $connection = @fsockopen('node', $port);
+            $port = getenv('BUN_DEV_PORT') ?: '9090';
+            $connection = @fsockopen('bun', $port);
             if (@is_resource($connection)) {
                 $server = explode(':', MODX_HTTP_HOST);
                 $vite = MODX_URL_SCHEME . $server[0] . ':' . $port . $baseUrl;
