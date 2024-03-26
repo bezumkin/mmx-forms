@@ -7,16 +7,21 @@ use DI\Container;
 use MMX\Forms\Controllers\Mgr\Elements\Chunks;
 use MMX\Forms\Controllers\Mgr\Elements\Snippets;
 use MMX\Forms\Controllers\Mgr\Emails;
+use MMX\Forms\Controllers\Mgr\File;
 use MMX\Forms\Controllers\Mgr\Forms;
+use MMX\Forms\Controllers\Mgr\Image;
 use MMX\Forms\Controllers\Mgr\Submissions;
 use MMX\Forms\Controllers\Web\Custom;
+use MMX\Forms\Controllers\Web\Files;
 use MMX\Forms\Controllers\Web\Forms as WebForms;
 use MMX\Forms\Middlewares\Mgr;
 use MMX\Forms\Models\Form;
+use MMX\Forms\Services\Filesystem;
 use MODX\Revolution\modExtraManagerController;
 use MODX\Revolution\modSystemEvent;
 use MODX\Revolution\modX;
 use Psr\Container\ContainerInterface;
+use RecursiveDirectoryIterator;
 use Slim\Routing\RouteCollectorProxy;
 
 class App
@@ -55,6 +60,10 @@ class App
             $this->run();
             exit();
         }
+        if ($event->name === 'OnSiteRefresh') {
+            $this::clearCache(Filesystem::getCache());
+            $this->modx->log(modX::LOG_LEVEL_INFO, $this->modx->lexicon('refresh_default') . ': ' . $this::NAME);
+        }
     }
 
     public function handleSnippet(array $properties): string
@@ -73,7 +82,7 @@ class App
         $locale = $this->modx->getOption('manager_language', $_SESSION, $this->modx->getOption('cultureKey'));
         $data = [
             'locale' => $locale ?: 'en',
-            'lexicon' => $this->getLexicon('success'),
+            'lexicon' => $this->getLexicon(['success', 'errors']),
             'forms' => [],
         ];
 
@@ -107,6 +116,8 @@ class App
         $app->group(
             '/mgr',
             static function (RouteCollectorProxy $group) {
+                $group->any('/file/{uuid}', File::class);
+                $group->any('/image/{uuid}', Image::class);
                 $group->any('/forms[/{id:\d+}]', Forms::class);
                 $group->any('/submissions[/{id:\d+}]', Submissions::class);
                 $group->any('/emails[/{id:\d+}]', Emails::class);
@@ -118,7 +129,8 @@ class App
         $app->group(
             '/web',
             static function (RouteCollectorProxy $group) {
-                $group->map(['OPTIONS', 'POST'], '/forms/{uuid}', WebForms::class);
+                $group->map(['OPTIONS', 'POST'], '/forms/{token}', WebForms::class);
+                $group->map(['OPTIONS', 'POST', 'DELETE'], '/forms/{token}/files[/{uuid}]', Files::class);
                 $group->map(['OPTIONS', 'GET'], '/custom/{snippet}', Custom::class);
             }
         );
@@ -126,10 +138,6 @@ class App
 
     public static function registerAssets(modX|modExtraManagerController $instance, bool $noCss = false): void
     {
-        $baseUrl = MODX_ASSETS_URL . 'components/' . self::NAMESPACE . '/';
-        $script = 'src/' . ($instance instanceof modX ? 'web' : 'mgr') . '.ts';
-        $manifest = MODX_ASSETS_PATH . 'components/' . self::NAMESPACE . '/manifest.json';
-
         $context = $instance instanceof modX ? 'web' : 'mgr';
         $assets = self::getAssetsFromManifest($context);
         if ($assets) {
@@ -149,13 +157,14 @@ class App
             $connection = @fsockopen('bun', $port);
             if (@is_resource($connection)) {
                 $server = explode(':', MODX_HTTP_HOST);
+                $baseUrl = MODX_ASSETS_URL . 'components/' . self::NAMESPACE . '/';
                 $vite = MODX_URL_SCHEME . $server[0] . ':' . $port . $baseUrl;
                 if ($instance instanceof modX) {
                     $instance->regClientHTMLBlock('<script type="module" src="' . $vite . '@vite/client"></script>');
-                    $instance->regClientHTMLBlock('<script type="module" src="' . $vite . $script . '"></script>');
+                    $instance->regClientHTMLBlock('<script type="module" src="' . $vite . 'src/mgr.ts"></script>');
                 } else {
                     $instance->addHtml('<script type="module" src="' . $vite . '@vite/client"></script>');
-                    $instance->addHtml('<script type="module" src="' . $vite . $script . '"></script>');
+                    $instance->addHtml('<script type="module" src="' . $vite . 'src/web.ts"></script>');
                 }
             }
         }
@@ -223,5 +232,18 @@ class App
         }, array_keys($entries));
 
         return array_combine($keys, array_values($entries));
+    }
+
+    protected static function clearCache(string $dir): void
+    {
+        $files = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+        foreach ($files as $file) {
+            if ($file->isDir()) {
+                self::clearCache($file->getPathname());
+            } elseif ($file->isFile()) {
+                @unlink($file->getPathname());
+            }
+        }
+        @rmdir($dir);
     }
 }

@@ -38,6 +38,9 @@
           </template>
         </MmxInputComboBox>
       </BFormGroup>
+      <BFormGroup>
+        <BFormCheckbox v-model="form.skip_files">{{ $t('models.form.emails.skip_files') }}</BFormCheckbox>
+      </BFormGroup>
 
       <BAlert :model-value="true" variant="light">
         <div v-html="$t('models.form.emails.desc')" />
@@ -82,7 +85,7 @@ const canAdd = computed(() => {
 })
 
 function createEmail() {
-  form.value = {to: '', subject: '', chunk: 0, idx: null}
+  form.value = {to: '', subject: '', chunk: 0, skip_files: false, idx: null}
   modalVisible.value = true
 }
 

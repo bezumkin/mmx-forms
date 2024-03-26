@@ -17,6 +17,7 @@ use MMX\Forms\App;
  *
  * @property-read Form $Form
  * @property-read Email[] $Emails
+ * @property-read File[] $Files
  */
 class Submission extends Model
 {
@@ -38,6 +39,11 @@ class Submission extends Model
         return $this->hasMany(Email::class);
     }
 
+    public function Files(): HasMany
+    {
+        return $this->hasMany(File::class);
+    }
+
     public function createEmails(bool $send = false): void
     {
         if (!$this->Form->emails) {
@@ -53,6 +59,7 @@ class Submission extends Model
             $email->subject = $this->usePlaceholders($data['subject'], $pls);
             $email->body = $this->prepareBody((int)$data['chunk']);
             $email->sent = null;
+            $email->skip_files = !empty($data['skip_files']);
 
             $email->save();
 

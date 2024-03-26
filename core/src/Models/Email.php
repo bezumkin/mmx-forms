@@ -17,6 +17,7 @@ use MODX\Revolution\Mail\modPHPMailer;
  * @property string $to
  * @property string $subject
  * @property string $body
+ * @property bool $skip_files
  * @property bool $sent
  * @property Carbon $sent_at
  * @property string $error
@@ -30,6 +31,7 @@ class Email extends Model
     protected $table = 'mmx_forms_emails';
     protected $guarded = ['id'];
     protected $casts = [
+        'skip_files' => 'bool',
         'sent' => 'bool',
         'sent_at' => 'datetime',
     ];
@@ -55,16 +57,22 @@ class Email extends Model
         $service->set(modMail::MAIL_FROM, $modx->getOption('emailsender'));
 
         $this->debug = [];
-        if ($this->body) {
-            try {
+        try {
+            if ($this->body) {
                 $body = mb_convert_encoding($this->body, 'HTML-ENTITIES', 'UTF-8');
                 $html = new InlineStyle($body);
                 /** @noinspection PhpParamsInspection */
                 $html->applyStylesheet($html->extractStylesheets());
                 $service->set(modMail::MAIL_BODY, $html->getHTML());
-            } catch (\Throwable $e) {
-                $this->debug[] = $e->getMessage();
             }
+            if (!$this->skip_files) {
+                foreach ($this->Submission->Files()->cursor() as $file) {
+                    /** @var File $file */
+                    $service->mailer->addStringAttachment($file->getFile(), $file->title, 'base64', $file->type);
+                }
+            }
+        } catch (\Throwable $e) {
+            $this->debug[] = $e->getMessage();
         }
 
         $service->mailer->SMTPDebug = 2;

@@ -20,13 +20,17 @@ const props = defineProps({
 })
 
 const record = ref({})
+const loading = ref(false)
 const form = ref()
-const formId = ref(props.id)
+const formKey = ref(props.id)
 const msgSuccess = useLexicon('success.form.submitted')
 const msgAction = ref()
+
 const properties = computed(() => {
   const data = {
     endpoint: false,
+    formKey: formKey.value,
+    loading,
     onSubmit,
   }
 
@@ -34,11 +38,12 @@ const properties = computed(() => {
 })
 
 async function onSubmit() {
+  loading.value = true
   try {
-    const data = await usePost('web/forms/' + formId.value, record.value)
+    const data = await usePost('web/forms/' + formKey.value, record.value)
     form.value.reset()
     if (data.id) {
-      formId.value = data.id
+      formKey.value = data.id
     }
     if (data.action) {
       if (data.action.type === 'message') {
@@ -51,6 +56,9 @@ async function onSubmit() {
     } else if (msgSuccess.length > 0) {
       useToastSuccess(msgSuccess)
     }
-  } catch (e) {}
+  } catch (e) {
+  } finally {
+    loading.value = false
+  }
 }
 </script>

@@ -38,30 +38,46 @@ export const toastOptions = {
   transition: 'Vue-Toastification__slideBlurred',
 }
 
+function getFormKey(form, error: string) {
+  if (!form.formKey) {
+    const msg = useLexicon(error)
+    useToastError(msg)
+    throw new Error(msg)
+  }
+  return form.formKey
+}
+
+async function uploadTempFile(file: File, el) {
+  const formKey = getFormKey(el.form$, 'errors.file.upload')
+  const form = new FormData()
+  form.append('file', file)
+
+  return await usePost('/web/forms/' + formKey + '/files', form, {
+    onUploadProgress: (e: ProgressEvent) => {
+      el.progress = Math.round((e.loaded * 100) / e.total)
+    },
+  })
+}
+
+async function removeTempFile({tmp}, el) {
+  const formKey = getFormKey(el.form$, 'errors.file.delete')
+  await useDelete('/web/forms/' + formKey + '/files/' + tmp)
+}
+
 export const vueFormConfig = defineConfig({
   theme,
   locales: {en},
   locale: 'en',
   axios,
   endpoints: {
-    submit: {
-      url: '/web/forms',
-      method: 'post',
-    },
-    uploadTempFile(file: File, {form$}) {
-      console.log(file, form$.formKey)
-    },
-    removeTempFile: {
-      url: '/web/files/remove',
-      method: 'delete',
-    },
-    removeFile: {
-      url: '/web/files/remove',
-      method: 'delete',
-    },
-    attachment: {
-      url: '/web/editor/attachment',
-      method: 'post',
+    submit: false,
+    uploadTempFile,
+    removeTempFile,
+    removeFile: false,
+    attachment() {
+      const msg = useLexicon('errors.file.attachment')
+      useToastError(msg)
+      throw new Error(msg)
     },
   },
 })

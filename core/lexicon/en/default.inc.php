@@ -41,6 +41,7 @@ $_tmp = [
                 'to' => 'To',
                 'subject' => 'Subject',
                 'chunk' => 'Chunk',
+                'skip_files' => 'Do not attach uploaded files to email',
             ],
             'actions' => [
                 'reset' => 'Reset Form',
@@ -91,6 +92,11 @@ $_tmp = [
     'errors' => [
         'form' => [
             'schema' => 'Schema could not be parsed, please check the syntax',
+        ],
+        'file' => [
+            'upload' => 'Could not upload file',
+            'delete' => 'Could not delete file',
+            'attachment' => 'Attachments are not supported',
         ],
     ],
     'success' => [

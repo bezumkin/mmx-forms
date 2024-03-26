@@ -1,5 +1,9 @@
 import {axios} from '../../common.config'
 
+export function getApiUrl() {
+  return axios.defaults.baseURL
+}
+
 export function useApi(endpoint: string, options: Record<string, any> = {}): any {
   return axios(endpoint, {...options})
 }

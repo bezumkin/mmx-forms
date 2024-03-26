@@ -3,6 +3,7 @@
 namespace MMX\Forms\Controllers\Mgr;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use MMX\Forms\Models\Submission;
 use Psr\Http\Message\ResponseInterface;
 use Vesp\Controllers\ModelController;
@@ -50,5 +51,40 @@ class Submissions extends ModelController
         $submission->createEmails();
 
         return $this->success();
+    }
+
+    public function prepareRow(Model $object): array
+    {
+        $array = $object->toArray();
+        if ($this->getPrimaryKey()) {
+            $array['values'] = array_map(static function ($value) {
+                if (is_array($value)) {
+                    if (!empty($value['tmp'])) {
+                        return $value['tmp'];
+                    }
+                    if (!empty(current($value)['tmp'])) {
+                        return array_map(static function ($subvalue) {
+                            return $subvalue['tmp'];
+                        }, $value);
+                    }
+
+                    return $value;
+                }
+
+                return $value;
+            }, $array['values']);
+        }
+
+        return $array;
+    }
+
+    protected function beforeDelete(Model $record): ?ResponseInterface
+    {
+        /** @var Submission $record */
+        foreach ($record->Files as $file) {
+            $file->delete();
+        }
+
+        return null;
     }
 }

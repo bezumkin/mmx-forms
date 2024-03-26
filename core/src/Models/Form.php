@@ -25,6 +25,7 @@ use Ramsey\Uuid\Uuid;
  * @property-read Submission[] $Submissions
  * @property-read Email[] $Emails
  * @property-read Snippet $PrepareSnippet
+ * @property-read File[] $Files
  */
 class Form extends Model
 {
@@ -55,6 +56,11 @@ class Form extends Model
     public function PrepareSnippet(): BelongsTo
     {
         return $this->belongsTo(Snippet::class, 'prepare_id');
+    }
+
+    public function Files(): HasMany
+    {
+        return $this->hasMany(File::class);
     }
 
     public function getFormKey(): string
