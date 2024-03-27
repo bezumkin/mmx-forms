@@ -51,8 +51,20 @@ async function onSubmit() {
       formKey.value = data.id
     }
     if (data.action) {
-      if (data.action.type === 'message') {
-        msgAction.value = data.action.value
+      if (data.action.type === 'message' && data.action.value) {
+        const re = /<script>(.*?)<\/script>/gs
+        const matches = re.exec(data.action.value)
+        if (matches) {
+          msgAction.value = data.action.value.replace(matches[0], '')
+          try {
+            // eslint-disable-next-line no-eval
+            eval(matches[1])
+          } catch (e) {
+            console.error(e)
+          }
+        } else {
+          msgAction.value = data.action.value
+        }
       } else if (data.action.type === 'redirect') {
         window.location = data.action.value
       } else if (data.action.type === 'reset' && data.action.value) {

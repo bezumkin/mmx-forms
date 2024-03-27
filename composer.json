@@ -2,7 +2,7 @@
   "name": "mmx/forms",
   "type": "library",
   "license": "MIT",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Modern forms for MODX 3",
   "authors": [
     {
