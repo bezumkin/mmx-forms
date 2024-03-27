@@ -21,26 +21,16 @@ class MmxFormsHomeManagerController extends \MODX\Revolution\modExtraManagerCont
 
     public function getTemplateFile(): string
     {
-        $locale = $this->modx->getOption('manager_language', $_SESSION, $this->modx->getOption('cultureKey'));
+        /** @var App $app */
+        $app = $this->modx->services->get(App::NAME);
+        $locale = $this->modx->getOption('manager_language', $_SESSION, $this->modx->getOption('cultureKey')) ?: 'en';
         $data = [
-            'locale' => $locale ?: 'en',
-            'lexicon' => $this->getLexicon(),
+            'locale' => $locale,
+            'lexicon' => $app->getLexicon($locale),
         ];
-
         $this->content .= '<div id="' . App::NAMESPACE . '-root" class="mmx-app"></div>';
         $this->content .= '<script>mmxForms=' . json_encode($data) . '</script>';
 
         return '';
-    }
-
-    protected function getLexicon(): array
-    {
-        $namespace = App::NAMESPACE;
-        $entries = $this->modx->lexicon->fetch($namespace);
-        $keys = array_map(static function ($key) use ($namespace) {
-            return str_replace($namespace . '.', '', $key);
-        }, array_keys($entries));
-
-        return array_combine($keys, array_values($entries));
     }
 }

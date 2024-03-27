@@ -31,7 +31,6 @@ export default defineConfig({
   },
   base: '/assets/components/mmx-forms/',
   build: {
-    // minify: false,
     manifest: 'manifest.json',
     emptyOutDir: true,
     outDir: './dist',
@@ -39,7 +38,10 @@ export default defineConfig({
       treeshake: 'recommended',
       input: {mgr: './src/mgr.ts', web: './src/web.ts'},
       output: {
-        manualChunks(id) {
+        manualChunks(id: string) {
+          if (id.includes('@vueform/vueform/locales')) {
+            return 'vueform-locales'
+          }
           if (id.includes('node_modules')) {
             const match = id.match(/node_modules\/(.*?)\//)
             if (match && match[1]) {

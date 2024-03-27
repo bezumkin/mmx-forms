@@ -3,11 +3,11 @@
     "file": "assets/axios-Cm0UX6qg.js",
     "name": "axios"
   },
-  "_bootstrap-vue-next-DySSWDks.js": {
-    "file": "assets/bootstrap-vue-next-DySSWDks.js",
+  "_bootstrap-vue-next-BMSRTt_F.js": {
+    "file": "assets/bootstrap-vue-next-BMSRTt_F.js",
     "name": "bootstrap-vue-next",
     "imports": [
-      "_vue-CQlTxiy5.js"
+      "_vue-Cn8r9y3J.js"
     ]
   },
   "_codemirror-BQUORstc.js": {
@@ -20,13 +20,14 @@
       "_crelt-C8TCjufn.js"
     ]
   },
-  "_common.config-DgMOw7gP.js": {
-    "file": "assets/common.config-DgMOw7gP.js",
+  "_common.config-Bu28tB0F.js": {
+    "file": "assets/common.config-Bu28tB0F.js",
     "name": "common.config",
     "imports": [
-      "_vueform-XI_to9XY.js",
+      "_vueform-locales-C8ccJXXi.js",
+      "_vueform-CIRLp5Lp.js",
       "_axios-Cm0UX6qg.js",
-      "_vue-toastification-DLvkSref.js"
+      "_vue-toastification-BmNyhvTg.js"
     ]
   },
   "_crelt-C8TCjufn.js": {
@@ -64,43 +65,43 @@
       "_moment-Cl4UOzQZ.js"
     ]
   },
-  "_vue-CQlTxiy5.js": {
-    "file": "assets/vue-CQlTxiy5.js",
+  "_vue-Cn8r9y3J.js": {
+    "file": "assets/vue-Cn8r9y3J.js",
     "name": "vue"
   },
-  "_vue-codemirror-Cc3EEBco.js": {
-    "file": "assets/vue-codemirror-Cc3EEBco.js",
+  "_vue-codemirror-DCS0DUvI.js": {
+    "file": "assets/vue-codemirror-DCS0DUvI.js",
     "name": "vue-codemirror",
     "imports": [
       "_codemirror-BQUORstc.js",
-      "_vue-CQlTxiy5.js"
+      "_vue-Cn8r9y3J.js"
     ]
   },
-  "_vue-router-YhpOq6q4.js": {
-    "file": "assets/vue-router-YhpOq6q4.js",
+  "_vue-router-DHwPpZ-C.js": {
+    "file": "assets/vue-router-DHwPpZ-C.js",
     "name": "vue-router",
     "imports": [
-      "_vue-CQlTxiy5.js"
+      "_vue-Cn8r9y3J.js"
     ]
   },
-  "_vue-toastification-DLvkSref.js": {
-    "file": "assets/vue-toastification-DLvkSref.js",
+  "_vue-toastification-BmNyhvTg.js": {
+    "file": "assets/vue-toastification-BmNyhvTg.js",
     "name": "vue-toastification",
     "imports": [
-      "_vue-CQlTxiy5.js"
+      "_vue-Cn8r9y3J.js"
     ]
   },
   "_vueform-!~{00i}~.js": {
     "file": "assets/vueform-CiCkEoWT.css",
     "src": "_vueform-!~{00i}~.js"
   },
-  "_vueform-XI_to9XY.js": {
-    "file": "assets/vueform-XI_to9XY.js",
+  "_vueform-CIRLp5Lp.js": {
+    "file": "assets/vueform-CIRLp5Lp.js",
     "name": "vueform",
     "imports": [
       "_axios-Cm0UX6qg.js",
       "_moment-Cl4UOzQZ.js",
-      "_vue-CQlTxiy5.js",
+      "_vue-Cn8r9y3J.js",
       "_popperjs-CBZXh9ac.js",
       "_wnumb-BOjvQ4jq.js",
       "_nouislider-dfTmBPAg.js",
@@ -109,6 +110,10 @@
     "css": [
       "assets/vueform-CiCkEoWT.css"
     ]
+  },
+  "_vueform-locales-C8ccJXXi.js": {
+    "file": "assets/vueform-locales-C8ccJXXi.js",
+    "name": "vueform-locales"
   },
   "_w3c-keyname-Vcq4gwWv.js": {
     "file": "assets/w3c-keyname-Vcq4gwWv.js",
@@ -122,25 +127,26 @@
     ]
   },
   "src/mgr.ts": {
-    "file": "assets/mgr-CosKYh-j.js",
+    "file": "assets/mgr-pKSUcK_s.js",
     "name": "mgr",
     "src": "src/mgr.ts",
     "isEntry": true,
     "imports": [
-      "_vue-CQlTxiy5.js",
-      "_vue-router-YhpOq6q4.js",
-      "_bootstrap-vue-next-DySSWDks.js",
-      "_vueform-XI_to9XY.js",
-      "_vue-toastification-DLvkSref.js",
-      "_common.config-DgMOw7gP.js",
+      "_vue-Cn8r9y3J.js",
+      "_vue-router-DHwPpZ-C.js",
+      "_bootstrap-vue-next-BMSRTt_F.js",
+      "_vueform-CIRLp5Lp.js",
+      "_vue-toastification-BmNyhvTg.js",
+      "_common.config-Bu28tB0F.js",
       "_codemirror-BQUORstc.js",
-      "_vue-codemirror-Cc3EEBco.js",
+      "_vue-codemirror-DCS0DUvI.js",
       "_axios-Cm0UX6qg.js",
       "_moment-Cl4UOzQZ.js",
       "_popperjs-CBZXh9ac.js",
       "_wnumb-BOjvQ4jq.js",
       "_trix-ul_qCPMg.js",
       "_nouislider-dfTmBPAg.js",
+      "_vueform-locales-C8ccJXXi.js",
       "_lezer-BmdiRFRL.js",
       "_style-mod-Bc2inJdb.js",
       "_w3c-keyname-Vcq4gwWv.js",
@@ -157,131 +163,136 @@
     ]
   },
   "src/mgr/pages/emails.vue": {
-    "file": "assets/emails-C6MdGd5i.js",
+    "file": "assets/emails-_6-E_-hP.js",
     "name": "emails",
     "src": "src/mgr/pages/emails.vue",
     "isDynamicEntry": true,
     "imports": [
       "src/mgr.ts",
-      "_common.config-DgMOw7gP.js",
+      "_common.config-Bu28tB0F.js",
       "_use-date-DVdoth2I.js",
-      "_vue-CQlTxiy5.js",
-      "_vue-router-YhpOq6q4.js",
-      "_bootstrap-vue-next-DySSWDks.js",
-      "_vueform-XI_to9XY.js",
+      "_vue-Cn8r9y3J.js",
+      "_vue-router-DHwPpZ-C.js",
+      "_bootstrap-vue-next-BMSRTt_F.js",
+      "_vueform-CIRLp5Lp.js",
       "_axios-Cm0UX6qg.js",
       "_moment-Cl4UOzQZ.js",
       "_popperjs-CBZXh9ac.js",
       "_wnumb-BOjvQ4jq.js",
       "_trix-ul_qCPMg.js",
       "_nouislider-dfTmBPAg.js",
-      "_vue-toastification-DLvkSref.js",
+      "_vue-toastification-BmNyhvTg.js",
       "_codemirror-BQUORstc.js",
       "_lezer-BmdiRFRL.js",
       "_style-mod-Bc2inJdb.js",
       "_w3c-keyname-Vcq4gwWv.js",
       "_crelt-C8TCjufn.js",
-      "_vue-codemirror-Cc3EEBco.js"
+      "_vue-codemirror-DCS0DUvI.js",
+      "_vueform-locales-C8ccJXXi.js"
     ]
   },
   "src/mgr/pages/emails/[id]/view.vue": {
-    "file": "assets/view-DqUkcLEG.js",
+    "file": "assets/view-D8e4zPhs.js",
     "name": "view",
     "src": "src/mgr/pages/emails/[id]/view.vue",
     "isDynamicEntry": true,
     "imports": [
       "src/mgr.ts",
-      "_bootstrap-vue-next-DySSWDks.js",
-      "_vue-router-YhpOq6q4.js",
-      "_common.config-DgMOw7gP.js",
-      "_vue-CQlTxiy5.js",
-      "_vueform-XI_to9XY.js",
+      "_bootstrap-vue-next-BMSRTt_F.js",
+      "_vue-router-DHwPpZ-C.js",
+      "_common.config-Bu28tB0F.js",
+      "_vue-Cn8r9y3J.js",
+      "_vueform-CIRLp5Lp.js",
       "_axios-Cm0UX6qg.js",
       "_moment-Cl4UOzQZ.js",
       "_popperjs-CBZXh9ac.js",
       "_wnumb-BOjvQ4jq.js",
       "_trix-ul_qCPMg.js",
       "_nouislider-dfTmBPAg.js",
-      "_vue-toastification-DLvkSref.js",
+      "_vue-toastification-BmNyhvTg.js",
       "_codemirror-BQUORstc.js",
       "_lezer-BmdiRFRL.js",
       "_style-mod-Bc2inJdb.js",
       "_w3c-keyname-Vcq4gwWv.js",
       "_crelt-C8TCjufn.js",
-      "_vue-codemirror-Cc3EEBco.js"
+      "_vue-codemirror-DCS0DUvI.js",
+      "_vueform-locales-C8ccJXXi.js"
     ]
   },
   "src/mgr/pages/submissions.vue": {
-    "file": "assets/submissions-Djb3w1ox.js",
+    "file": "assets/submissions-CNoURY9r.js",
     "name": "submissions",
     "src": "src/mgr/pages/submissions.vue",
     "isDynamicEntry": true,
     "imports": [
       "src/mgr.ts",
-      "_common.config-DgMOw7gP.js",
+      "_common.config-Bu28tB0F.js",
       "_use-date-DVdoth2I.js",
-      "_vue-CQlTxiy5.js",
-      "_vue-router-YhpOq6q4.js",
-      "_bootstrap-vue-next-DySSWDks.js",
-      "_vueform-XI_to9XY.js",
+      "_vue-Cn8r9y3J.js",
+      "_vue-router-DHwPpZ-C.js",
+      "_bootstrap-vue-next-BMSRTt_F.js",
+      "_vueform-CIRLp5Lp.js",
       "_axios-Cm0UX6qg.js",
       "_moment-Cl4UOzQZ.js",
       "_popperjs-CBZXh9ac.js",
       "_wnumb-BOjvQ4jq.js",
       "_trix-ul_qCPMg.js",
       "_nouislider-dfTmBPAg.js",
-      "_vue-toastification-DLvkSref.js",
+      "_vue-toastification-BmNyhvTg.js",
       "_codemirror-BQUORstc.js",
       "_lezer-BmdiRFRL.js",
       "_style-mod-Bc2inJdb.js",
       "_w3c-keyname-Vcq4gwWv.js",
       "_crelt-C8TCjufn.js",
-      "_vue-codemirror-Cc3EEBco.js"
+      "_vue-codemirror-DCS0DUvI.js",
+      "_vueform-locales-C8ccJXXi.js"
     ]
   },
   "src/mgr/pages/submissions/[id]/view.vue": {
-    "file": "assets/view-BsLZ9ARZ.js",
+    "file": "assets/view-CANYPjE1.js",
     "name": "view",
     "src": "src/mgr/pages/submissions/[id]/view.vue",
     "isDynamicEntry": true,
     "imports": [
       "src/mgr.ts",
-      "_vue-router-YhpOq6q4.js",
-      "_common.config-DgMOw7gP.js",
-      "_vue-CQlTxiy5.js",
-      "_bootstrap-vue-next-DySSWDks.js",
-      "_vueform-XI_to9XY.js",
+      "_vue-router-DHwPpZ-C.js",
+      "_common.config-Bu28tB0F.js",
+      "_vue-Cn8r9y3J.js",
+      "_bootstrap-vue-next-BMSRTt_F.js",
+      "_vueform-CIRLp5Lp.js",
       "_axios-Cm0UX6qg.js",
       "_moment-Cl4UOzQZ.js",
       "_popperjs-CBZXh9ac.js",
       "_wnumb-BOjvQ4jq.js",
       "_trix-ul_qCPMg.js",
       "_nouislider-dfTmBPAg.js",
-      "_vue-toastification-DLvkSref.js",
+      "_vue-toastification-BmNyhvTg.js",
       "_codemirror-BQUORstc.js",
       "_lezer-BmdiRFRL.js",
       "_style-mod-Bc2inJdb.js",
       "_w3c-keyname-Vcq4gwWv.js",
       "_crelt-C8TCjufn.js",
-      "_vue-codemirror-Cc3EEBco.js"
+      "_vue-codemirror-DCS0DUvI.js",
+      "_vueform-locales-C8ccJXXi.js"
     ]
   },
   "src/web.ts": {
-    "file": "assets/web-Cb1FJnIC.js",
+    "file": "assets/web-CtYlDukf.js",
     "name": "web",
     "src": "src/web.ts",
     "isEntry": true,
     "imports": [
-      "_vue-CQlTxiy5.js",
-      "_vueform-XI_to9XY.js",
-      "_vue-toastification-DLvkSref.js",
-      "_common.config-DgMOw7gP.js",
+      "_vue-Cn8r9y3J.js",
+      "_vueform-CIRLp5Lp.js",
+      "_vue-toastification-BmNyhvTg.js",
+      "_common.config-Bu28tB0F.js",
       "_axios-Cm0UX6qg.js",
       "_moment-Cl4UOzQZ.js",
       "_popperjs-CBZXh9ac.js",
       "_wnumb-BOjvQ4jq.js",
       "_trix-ul_qCPMg.js",
-      "_nouislider-dfTmBPAg.js"
+      "_nouislider-dfTmBPAg.js",
+      "_vueform-locales-C8ccJXXi.js"
     ],
     "css": [
       "assets/web-9FX2gSb9.css"

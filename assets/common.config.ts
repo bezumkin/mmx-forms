@@ -1,8 +1,12 @@
 // @ts-nocheck
+import de from '@vueform/vueform/locales/de'
 import en from '@vueform/vueform/locales/en'
+import fr from '@vueform/vueform/locales/fr_CA'
+import nl from '@vueform/vueform/locales/nl'
+import ru from '@vueform/vueform/locales/ru'
 import theme from '@vueform/vueform/themes/bootstrap'
 import axiosDefault from 'axios'
-// eslint-disable-next-line
+// eslint-disable-next-line import/named
 import {defineConfig} from '@vueform/vueform'
 import {POSITION} from 'vue-toastification'
 
@@ -65,15 +69,12 @@ async function removeTempFile({tmp}, el) {
 }
 
 export const vueFormConfig = defineConfig({
-  theme,
-  locales: {en},
-  locale: 'en',
   axios,
+  theme,
+  locales: {de, en, fr, nl, ru},
   endpoints: {
-    submit: false,
     uploadTempFile,
     removeTempFile,
-    removeFile: false,
     attachment() {
       const msg = useLexicon('errors.file.attachment')
       useToastError(msg)

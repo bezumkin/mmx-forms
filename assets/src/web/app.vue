@@ -17,6 +17,10 @@ const props = defineProps({
       return {}
     },
   },
+  locale: {
+    type: String,
+    default: 'en',
+  },
 })
 
 const record = ref({})
@@ -30,6 +34,7 @@ const properties = computed(() => {
   const data = {
     endpoint: false,
     formKey: formKey.value,
+    locale: props.locale,
     loading,
     onSubmit,
   }

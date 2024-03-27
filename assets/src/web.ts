@@ -8,8 +8,9 @@ import App from './web/app.vue'
 import './web/scss/index.scss'
 
 document.addEventListener('DOMContentLoaded', () => {
+  const locale = window.mmxForms.locale || 'en'
   window.mmxForms.forms.forEach((form: Record<string, any>) => {
-    createApp(App, {id: form.id, schema: form.schema})
+    createApp(App, {id: form.id, schema: form.schema, locale})
       .use(vueForm, vueFormConfig)
       .use(Toast, toastOptions)
       .mount('#mmx-forms-' + form.id)

@@ -26,6 +26,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  locale: {
+    type: String,
+    // @ts-ignore
+    default: window.mmxForms?.locale || 'en',
+  },
 })
 
 const properties = computed(() => {

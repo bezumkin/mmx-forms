@@ -74,15 +74,16 @@ class App
         $id = $properties['id'] ?? 0;
         /** @var Form $form */
         if (!$id || !$form = Form::query()->where('active', true)->find($id)) {
+            $this->modx->log(modX::LOG_LEVEL_ERROR, 'Could not load active mmxForm with id = "' . $id . '".');
+
             return '';
         }
 
         $this::registerAssets($this->modx, !empty($properties['nocss']));
-
-        $locale = $this->modx->getOption('manager_language', $_SESSION, $this->modx->getOption('cultureKey'));
+        $locale = $this->modx->context?->getOption('cultureKey') ?: 'en';
         $data = [
-            'locale' => $locale ?: 'en',
-            'lexicon' => $this->getLexicon(['success', 'errors']),
+            'locale' => $locale,
+            'lexicon' => $this->getLexicon($locale, ['success', 'errors']),
             'forms' => [],
         ];
 
@@ -161,10 +162,10 @@ class App
                 $vite = MODX_URL_SCHEME . $server[0] . ':' . $port . $baseUrl;
                 if ($instance instanceof modX) {
                     $instance->regClientHTMLBlock('<script type="module" src="' . $vite . '@vite/client"></script>');
-                    $instance->regClientHTMLBlock('<script type="module" src="' . $vite . 'src/mgr.ts"></script>');
+                    $instance->regClientHTMLBlock('<script type="module" src="' . $vite . 'src/web.ts"></script>');
                 } else {
                     $instance->addHtml('<script type="module" src="' . $vite . '@vite/client"></script>');
-                    $instance->addHtml('<script type="module" src="' . $vite . 'src/web.ts"></script>');
+                    $instance->addHtml('<script type="module" src="' . $vite . 'src/mgr.ts"></script>');
                 }
             }
         }
@@ -214,17 +215,21 @@ class App
         return $out;
     }
 
-    public function getLexicon(array|string $prefixes): array
+    public function getLexicon(string $locale = 'en', array|string $prefixes = []): array
     {
-        if (!is_array($prefixes)) {
-            $prefixes = [$prefixes];
-        }
-
         $namespace = $this::NAMESPACE;
-        $this->modx->lexicon->load($namespace . ':default');
+        $this->modx->lexicon->load($locale . ':' . $namespace . ':default');
         $entries = [];
-        foreach ($prefixes as $prefix) {
-            $entries += $this->modx->lexicon->fetch($namespace . '.' . $prefix);
+
+        if ($prefixes) {
+            if (!is_array($prefixes)) {
+                $prefixes = [$prefixes];
+            }
+            foreach ($prefixes as $prefix) {
+                $entries += $this->modx->lexicon->fetch($namespace . '.' . $prefix);
+            }
+        } else {
+            $entries = $this->modx->lexicon->fetch($namespace);
         }
 
         $keys = array_map(static function ($key) use ($namespace) {
@@ -236,6 +241,9 @@ class App
 
     protected static function clearCache(string $dir): void
     {
+        if (!file_exists($dir)) {
+            return;
+        }
         $files = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
         foreach ($files as $file) {
             if ($file->isDir()) {
