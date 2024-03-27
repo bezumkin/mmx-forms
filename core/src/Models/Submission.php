@@ -73,7 +73,7 @@ class Submission extends Model
     {
         /** @var Chunk $chunk */
         if (!$chunk = Chunk::query()->find($id)) {
-            return print_r($this->values, true);
+            return '<pre>' . print_r($this->values, true) . '</pre>';
         }
 
         $modx = App::getContainer()->get('modx');

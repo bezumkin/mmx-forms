@@ -82,6 +82,7 @@ class Email extends Model
 
         if ($this->sent = $service->mailer->send()) {
             $this->sent_at = time();
+            $this->error = null;
         } elseif ($this->debug) {
             $this->error = implode(PHP_EOL, $this->debug);
         } else {
