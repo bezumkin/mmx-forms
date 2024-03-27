@@ -18,7 +18,7 @@ axios.isCancel = axiosDefault.isCancel
 
 axios.interceptors.response.use(
   function (response) {
-    return response.data
+    return response.config?.isApi ? response.data : response
   },
   function (error) {
     if (error.response && error.response.data && typeof error.response.data === 'string') {

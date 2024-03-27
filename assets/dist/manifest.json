@@ -20,8 +20,8 @@
       "_crelt-C8TCjufn.js"
     ]
   },
-  "_common.config-Bu28tB0F.js": {
-    "file": "assets/common.config-Bu28tB0F.js",
+  "_common.config-6jiFmk43.js": {
+    "file": "assets/common.config-6jiFmk43.js",
     "name": "common.config",
     "imports": [
       "_vueform-locales-C8ccJXXi.js",
@@ -127,7 +127,7 @@
     ]
   },
   "src/mgr.ts": {
-    "file": "assets/mgr-pKSUcK_s.js",
+    "file": "assets/mgr-Bey-MVFe.js",
     "name": "mgr",
     "src": "src/mgr.ts",
     "isEntry": true,
@@ -137,7 +137,7 @@
       "_bootstrap-vue-next-BMSRTt_F.js",
       "_vueform-CIRLp5Lp.js",
       "_vue-toastification-BmNyhvTg.js",
-      "_common.config-Bu28tB0F.js",
+      "_common.config-6jiFmk43.js",
       "_codemirror-BQUORstc.js",
       "_vue-codemirror-DCS0DUvI.js",
       "_axios-Cm0UX6qg.js",
@@ -163,13 +163,13 @@
     ]
   },
   "src/mgr/pages/emails.vue": {
-    "file": "assets/emails-_6-E_-hP.js",
+    "file": "assets/emails-CTyRE_bb.js",
     "name": "emails",
     "src": "src/mgr/pages/emails.vue",
     "isDynamicEntry": true,
     "imports": [
       "src/mgr.ts",
-      "_common.config-Bu28tB0F.js",
+      "_common.config-6jiFmk43.js",
       "_use-date-DVdoth2I.js",
       "_vue-Cn8r9y3J.js",
       "_vue-router-DHwPpZ-C.js",
@@ -192,7 +192,7 @@
     ]
   },
   "src/mgr/pages/emails/[id]/view.vue": {
-    "file": "assets/view-D8e4zPhs.js",
+    "file": "assets/view-B7q4W_7t.js",
     "name": "view",
     "src": "src/mgr/pages/emails/[id]/view.vue",
     "isDynamicEntry": true,
@@ -200,7 +200,7 @@
       "src/mgr.ts",
       "_bootstrap-vue-next-BMSRTt_F.js",
       "_vue-router-DHwPpZ-C.js",
-      "_common.config-Bu28tB0F.js",
+      "_common.config-6jiFmk43.js",
       "_vue-Cn8r9y3J.js",
       "_vueform-CIRLp5Lp.js",
       "_axios-Cm0UX6qg.js",
@@ -220,13 +220,13 @@
     ]
   },
   "src/mgr/pages/submissions.vue": {
-    "file": "assets/submissions-CNoURY9r.js",
+    "file": "assets/submissions-BBTtiiHo.js",
     "name": "submissions",
     "src": "src/mgr/pages/submissions.vue",
     "isDynamicEntry": true,
     "imports": [
       "src/mgr.ts",
-      "_common.config-Bu28tB0F.js",
+      "_common.config-6jiFmk43.js",
       "_use-date-DVdoth2I.js",
       "_vue-Cn8r9y3J.js",
       "_vue-router-DHwPpZ-C.js",
@@ -249,14 +249,14 @@
     ]
   },
   "src/mgr/pages/submissions/[id]/view.vue": {
-    "file": "assets/view-CANYPjE1.js",
+    "file": "assets/view-D2GwCPYP.js",
     "name": "view",
     "src": "src/mgr/pages/submissions/[id]/view.vue",
     "isDynamicEntry": true,
     "imports": [
       "src/mgr.ts",
       "_vue-router-DHwPpZ-C.js",
-      "_common.config-Bu28tB0F.js",
+      "_common.config-6jiFmk43.js",
       "_vue-Cn8r9y3J.js",
       "_bootstrap-vue-next-BMSRTt_F.js",
       "_vueform-CIRLp5Lp.js",
@@ -277,7 +277,7 @@
     ]
   },
   "src/web.ts": {
-    "file": "assets/web-CtYlDukf.js",
+    "file": "assets/web-DV3-vwl3.js",
     "name": "web",
     "src": "src/web.ts",
     "isEntry": true,
@@ -285,7 +285,7 @@
       "_vue-Cn8r9y3J.js",
       "_vueform-CIRLp5Lp.js",
       "_vue-toastification-BmNyhvTg.js",
-      "_common.config-Bu28tB0F.js",
+      "_common.config-6jiFmk43.js",
       "_axios-Cm0UX6qg.js",
       "_moment-Cl4UOzQZ.js",
       "_popperjs-CBZXh9ac.js",

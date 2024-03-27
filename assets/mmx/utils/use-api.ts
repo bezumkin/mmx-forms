@@ -5,6 +5,7 @@ export function getApiUrl() {
 }
 
 export function useApi(endpoint: string, options: Record<string, any> = {}): any {
+  options.isApi = true
   return axios(endpoint, {...options})
 }
 
