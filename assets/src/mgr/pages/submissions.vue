@@ -24,7 +24,7 @@ const url = 'mgr/submissions'
 const fields = computed(() => {
   return [
     {key: 'id', label: $t('models.submission.id'), sortable: true},
-    {key: 'form.title', label: $t('models.form.title_one'), sortable: true},
+    {key: 'form.title', label: $t('models.form.title_one')},
     {key: 'emails_count', label: $t('models.email.title_many'), sortable: true},
     {key: 'submitted_at', label: $t('models.submission.submitted_at'), sortable: true, formatter: useDatetime},
   ]

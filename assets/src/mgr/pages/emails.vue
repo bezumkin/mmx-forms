@@ -31,7 +31,7 @@ const url = 'mgr/emails'
 const fields = computed(() => {
   return [
     {key: 'id', label: $t('models.submission.id'), sortable: true},
-    {key: 'form.title', label: $t('models.form.title_one'), sortable: true},
+    {key: 'form.title', label: $t('models.form.title_one')},
     {key: 'to', label: $t('models.email.to'), sortable: true},
     {key: 'subject', label: $t('models.email.subject'), sortable: true},
     {key: 'sent', label: $t('models.email.sent'), sortable: true},
