@@ -17,7 +17,7 @@ The [Vueform][vueform] integration to build and process any kind of forms.
 
 This package requires [mmxDatabase][mmx-database] to work with MODX database using Eloquent models.
 
-The `mmx/database` dependency will be downloaded automatically by Composer, you need only install it inside MODX.
+The `mmx/database` dependency will be downloaded automatically by Composer.
 
 ### Prepare
 
@@ -35,13 +35,12 @@ Then run `composer update` and you are ready to install the **mmx** packages.
 
 ```bash
 composer require mmx/forms --update-no-dev
-composer exec mmx-database install # optional, if you haven't used Eloquent for MODX 3 before
 composer exec mmx-forms install
 ```
 
 ### Update
 ```bash
-composer update mmx/forms
+composer update mmx/forms --no-dev
 composer exec mmx-forms install
 ```
 Changes will be described on repository [Releases][releases] page. Don't forget to subscribe for updates!
@@ -50,7 +49,6 @@ Changes will be described on repository [Releases][releases] page. Don't forget 
 
 ```bash
 composer exec mmx-forms remove
-composer exec mmx-database remove # only if you don't want to use Eloquent for MODX 3 anymore
 composer remove mmx/forms
 ```
 

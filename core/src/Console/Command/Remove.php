@@ -21,7 +21,7 @@ class Remove extends Command
     protected static $defaultDescription = 'Remove mmxForms from MODX 3 and delete its data along with tables';
     protected modX $modx;
 
-    public function __construct($modx, ?string $name = null)
+    public function __construct(modX $modx, ?string $name = null)
     {
         parent::__construct($name);
         $this->modx = $modx;
@@ -81,5 +81,19 @@ class Remove extends Command
 
         $this->modx->getCacheManager()->refresh();
         $output->writeln('<info>Cleared MODX cache</info>');
+
+        try {
+            $base = MODX_BASE_PATH . 'composer.json';
+            $core = MODX_CORE_PATH . 'composer.json';
+            if (file_exists($base) || file_exists($core)) {
+                $composer = json_decode(file_get_contents($base) ?: file_get_contents($core), true);
+                if (!isset($composer['require']['mmx/database'])) {
+                    $output->writeln('<info>Removing mmx/database as it is not required in composer.json</info>');
+                    $remove = new \MMX\Database\Console\Command\Remove($this->modx);
+                    $remove->run($input, $output);
+                }
+            }
+        } catch (\Throwable) {
+        }
     }
 }

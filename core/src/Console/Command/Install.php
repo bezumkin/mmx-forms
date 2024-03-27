@@ -21,7 +21,7 @@ class Install extends Command
     protected static $defaultDescription = 'Install mmxForms for MODX 3';
     protected modX $modx;
 
-    public function __construct($modx, ?string $name = null)
+    public function __construct(modX $modx, ?string $name = null)
     {
         parent::__construct($name);
         $this->modx = $modx;

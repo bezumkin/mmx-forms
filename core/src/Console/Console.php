@@ -27,9 +27,16 @@ class Console extends Application
     public function doRun(InputInterface $input, OutputInterface $output)
     {
         if (!$this->modx->services->has('mmxDatabase')) {
-            $output->writeln('<error>Could not load mmxDatabase service</error>');
-            $output->writeln('<info>Please run "composer exec mmx-database install"</info>');
-            exit;
+            try {
+                new \MMX\Database\App($this->modx);
+                $install = new \MMX\Database\Console\Command\Install($this->modx);
+                $output->writeln('<info>Trying to install mmx/database...</info>');
+                $install->run($input, $output);
+            } catch (\Throwable $e) {
+                $output->writeln('<error>Could not load mmxDatabase service</error>');
+                $output->writeln('<info>Please run "composer exec mmx-database install"</info>');
+                exit;
+            }
         }
 
         return parent::doRun($input, $output);
