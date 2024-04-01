@@ -1,8 +1,11 @@
 <?php
 
-use MMX\Forms\App;
+namespace MMX\Forms\Controllers\Modx;
 
-class MmxFormsHomeManagerController extends \MODX\Revolution\modExtraManagerController
+use MMX\Forms\App;
+use MODX\Revolution\modExtraManagerController;
+
+class Home extends modExtraManagerController
 {
     public function loadCustomCssJs(): void
     {

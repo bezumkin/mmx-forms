@@ -56,6 +56,11 @@ class App
             return;
         }
 
+        if ($event->name === 'OnManagerPageInit' && $event->params['namespace'] === $this::NAMESPACE) {
+            if ($event->params['action'] === 'home') {
+                class_alias(\MMX\Forms\Controllers\Modx\Home::class, '\MODX\Revolution\Controllers\Home');
+            }
+        }
         if ($event->name === 'OnHandleRequest' && str_starts_with($_SERVER['REQUEST_URI'], '/' . $this::NAMESPACE)) {
             $this->run();
             exit();

@@ -86,6 +86,7 @@ class Install extends Command
         $pluginEvents = [
             'OnHandleRequest',
             'OnSiteRefresh',
+            'OnManagerPageInit',
         ];
         foreach ($pluginEvents as $name) {
             if (!$plugin->Events()->where('event', $name)->count()) {
