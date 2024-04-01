@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@types/prismjs": "^1.26.3",
     "@vitejs/plugin-vue": "^4.1.0",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.7.0",
