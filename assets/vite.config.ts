@@ -1,54 +1,40 @@
-import {defineConfig} from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueform from '@vueform/vueform/vite'
+// @ts-ignore
+import withMmx, {aiConfig} from '@vesp/mmx-frontend/config'
 import ai from 'unplugin-auto-import/vite'
-import eslint from 'vite-plugin-eslint'
-import pages from 'vite-plugin-pages'
-import components from 'unplugin-vue-components/vite'
-import {BootstrapVueNextResolver} from 'unplugin-vue-components/resolvers'
+import vueform from '@vueform/vueform/vite'
 
-export default defineConfig({
+export default withMmx('mmx-forms', {
   plugins: [
-    vue(),
     vueform(),
-    eslint(),
     ai({
-      dts: true,
-      include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
-      imports: ['vue', 'vue-router'],
-      dirs: ['mmx/utils'],
+      ...aiConfig,
+      dirs: ['src/mgr/utils'],
     }),
-    components({
-      directoryAsNamespace: true,
-      resolvers: [BootstrapVueNextResolver()],
-      dirs: ['mmx/components', 'src/mgr/components'],
-    }),
-    pages({dirs: 'src/mgr/pages'}),
   ],
-  server: {
-    host: '0.0.0.0',
-    port: 9090,
-  },
-  base: '/assets/components/mmx-forms/',
   build: {
     manifest: 'manifest.json',
     emptyOutDir: true,
     outDir: './dist',
     rollupOptions: {
-      treeshake: 'recommended',
       input: {mgr: './src/mgr.ts', web: './src/web.ts'},
       output: {
-        manualChunks(id: string) {
-          if (id.includes('@vueform/vueform/locales')) {
-            return 'vueform-locales'
-          }
-          if (id.includes('node_modules')) {
-            const match = id.match(/node_modules\/(.*?)\//)
-            if (match && match[1]) {
-              return match[1].replace('@', '')
-            }
-            return 'vendor'
-          }
+        manualChunks: {
+          api: ['@vesp/mmx-frontend/api', '@vesp/mmx-frontend/toast', 'ofetch'],
+          vesp: ['@vesp/mmx-frontend'],
+          vue: ['vue'],
+          vueform: [
+            '@vueform/vueform',
+            'axios',
+            'moment',
+            '@popperjs/core',
+            'wnumb',
+            'trix',
+            'nouislider',
+            'ufo',
+            'destr',
+          ],
+          'vue-router': ['vue-router'],
+          'vue-bootstrap': ['bootstrap-vue-next'],
         },
       },
     },

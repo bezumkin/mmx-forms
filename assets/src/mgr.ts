@@ -1,11 +1,10 @@
 // @ts-nocheck
 import {createApp} from 'vue'
 import {createRouter, createWebHashHistory} from 'vue-router'
-import {createBootstrap} from 'bootstrap-vue-next'
+import {createMmx} from '@vesp/mmx-frontend'
 import vueForm from '@vueform/vueform'
-import Toast from 'vue-toastification'
 
-import {toastOptions, vueFormConfig} from '../common.config'
+import {vueFormConfig} from '../common.config'
 
 import App from './mgr/app.vue'
 import routes from '~pages'
@@ -19,8 +18,7 @@ const router = createRouter({
 document.addEventListener('DOMContentLoaded', () => {
   createApp(App)
     .use(router)
-    .use(createBootstrap())
-    .use(Toast, toastOptions)
+    .use(createMmx({namespace: 'mmx-forms'}))
     .use(vueForm, vueFormConfig)
     .mount('#mmx-forms-root')
 })

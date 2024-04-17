@@ -7,5 +7,5 @@ $variable-prefix: 'vf-';
 @import "bootstrap-scss/utilities";
 @import "bootstrap-scss/root";
 @import '@vueform/vueform/themes/bootstrap/scss/index.scss';
-@import '../../../mmx/scss/toast';
+@import '@vesp/mmx-frontend/assets/toast';
 

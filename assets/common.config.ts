@@ -8,7 +8,6 @@ import theme from '@vueform/vueform/themes/bootstrap'
 import axiosDefault from 'axios'
 // eslint-disable-next-line import/named
 import {defineConfig} from '@vueform/vueform'
-import {POSITION} from 'vue-toastification'
 
 export const axios = axiosDefault.create({
   baseURL: '/mmx-forms/',
@@ -29,18 +28,6 @@ axios.interceptors.response.use(
     return Promise.reject(error.response)
   },
 )
-
-export const toastOptions = {
-  position: POSITION.TOP_RIGHT,
-  maxToasts: 5,
-  timeout: 5000,
-  pauseOnHover: true,
-  pauseOnFocusLoss: true,
-  closeButton: false,
-  closeOnClick: false,
-  draggable: true,
-  transition: 'Vue-Toastification__slideBlurred',
-}
 
 function getFormKey(form, error: string) {
   if (!form.formKey) {

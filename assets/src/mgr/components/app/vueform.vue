@@ -3,8 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import {getApiUrl} from '../../../../mmx/utils/use-api'
-
 const props = defineProps({
   modelValue: {
     type: Object,
@@ -49,7 +47,7 @@ const properties = computed(() => {
   return {...data, schema: {}}
 })
 
-const apiUrl = getApiUrl()
+const apiUrl = '/' + getNamespace() + '/'
 
 function prepareSchema(source: Record<string, any>) {
   const target: Record<string, any> = {}

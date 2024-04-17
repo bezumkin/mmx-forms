@@ -1,18 +1,21 @@
 // @ts-nocheck
 import {createApp} from 'vue'
 import vueForm from '@vueform/vueform'
-import Toast from 'vue-toastification'
+import {createMmxToast} from '@vesp/mmx-frontend/toast'
+import {setNamespace} from '@vesp/mmx-frontend/namespace'
 
-import {toastOptions, vueFormConfig} from '../common.config'
+import {vueFormConfig} from '../common.config'
 import App from './web/app.vue'
 import './web/scss/index.scss'
+
+setNamespace('mmx-forms')
 
 document.addEventListener('DOMContentLoaded', () => {
   const locale = window.mmxForms.locale || 'en'
   window.mmxForms.forms.forEach((form: Record<string, any>) => {
     createApp(App, {id: form.id, schema: form.schema, locale})
       .use(vueForm, vueFormConfig)
-      .use(Toast, toastOptions)
+      .use(createMmxToast())
       .mount('#mmx-forms-' + form.id)
   })
 })

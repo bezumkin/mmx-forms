@@ -3,7 +3,6 @@
 .mmx-app {
   font-size: 14px;
 
-  //@import "bootstrap-scss/bootstrap";
   @import "bootstrap-scss/reboot";
   @import "bootstrap-scss/grid";
   @import "bootstrap-scss/containers";
@@ -21,7 +20,7 @@
   @import "bootstrap-scss/helpers";
   @import "bootstrap-scss/utilities/api";
 
-  @import '../../../mmx/scss/components';
+  @import '@vesp/mmx-frontend/assets/components';
 
   form {
     fieldset:not(:last-child) {
@@ -40,4 +39,4 @@
 
 @import "bootstrap-scss/modal";
 @import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
-@import '../../../mmx/scss/toast';
+@import '@vesp/mmx-frontend/assets/toast';
