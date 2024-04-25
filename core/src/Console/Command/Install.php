@@ -95,19 +95,22 @@ class Install extends Command
             }
         }
 
-        if (!Snippet::query()->where(['name' => App::NAME])->count()) {
+        $snippet = Snippet::query()->where('name', App::NAME)->first();
+        if (!$snippet) {
             $snippet = new Snippet();
             $snippet->name = App::NAME;
             $snippet->snippet = preg_replace('#^<\?php#', '', file_get_contents($corePath . '/elements/snippet.php'));
+        }
+        if (!$snippet->properties || !isset($snippet->properties['id'])) {
             $snippet->properties = [
-                [
+                'id' => [
                     'name' => 'id',
                     'desc' => 'mmx-forms.snippets.forms.id',
                     'type' => 'text',
                     'value' => '',
                     'lexicon' => 'mmx-forms:default',
                 ],
-                [
+                'noCSS' => [
                     'name' => 'noCSS',
                     'desc' => 'mmx-forms.snippets.forms.no_css',
                     'type' => 'combo-boolean',
@@ -116,7 +119,8 @@ class Install extends Command
                 ],
             ];
             $snippet->save();
-            $output->writeln('<info>Created snippet "' . $snippet->name . '"</info>');
+            $action = !$snippet->exists() ? 'Created' : 'Updated';
+            $output->writeln('<info>' . $action . ' snippet "' . $snippet->name . '"</info>');
         }
 
         $output->writeln('<info>Run Phinx migrations</info>');
