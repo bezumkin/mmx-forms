@@ -66,7 +66,7 @@
     ]
   },
   "src/mgr.ts": {
-    "file": "assets/mgr-Br1zm42O.js",
+    "file": "assets/mgr-DTZBtgiO.js",
     "name": "mgr",
     "src": "src/mgr.ts",
     "isEntry": true,
@@ -86,7 +86,7 @@
       "src/mgr/pages/emails/[id]/view.vue"
     ],
     "css": [
-      "assets/mgr-BJnzC0IB.css"
+      "assets/mgr-CN5HWlNt.css"
     ]
   },
   "src/mgr/pages/emails.vue": {
@@ -134,7 +134,7 @@
     ]
   },
   "src/mgr/pages/submissions/[id]/view.vue": {
-    "file": "assets/view-CFK1SNCL.js",
+    "file": "assets/view-BYuEQ3GI.js",
     "name": "view",
     "src": "src/mgr/pages/submissions/[id]/view.vue",
     "isDynamicEntry": true,

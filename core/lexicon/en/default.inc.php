@@ -3,6 +3,9 @@
 $_tmp = [
     'menu_name' => 'mmxForms',
     'menu_desc' => 'Friendly form builder based on Vueform',
+    'version' => [
+        'available' => '{version} available',
+    ],
     'actions' => [
         'add' => 'Add',
         'create' => 'Create',

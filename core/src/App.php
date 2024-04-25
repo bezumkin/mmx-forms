@@ -4,16 +4,6 @@ namespace MMX\Forms;
 
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
-use MMX\Forms\Controllers\Mgr\Elements\Chunks;
-use MMX\Forms\Controllers\Mgr\Elements\Snippets;
-use MMX\Forms\Controllers\Mgr\Emails;
-use MMX\Forms\Controllers\Mgr\File;
-use MMX\Forms\Controllers\Mgr\Forms;
-use MMX\Forms\Controllers\Mgr\Image;
-use MMX\Forms\Controllers\Mgr\Submissions;
-use MMX\Forms\Controllers\Web\Custom;
-use MMX\Forms\Controllers\Web\Files;
-use MMX\Forms\Controllers\Web\Forms as WebForms;
 use MMX\Forms\Middlewares\Mgr;
 use MMX\Forms\Models\Form;
 use MMX\Forms\Services\Filesystem;
@@ -122,22 +112,23 @@ class App
         $app->group(
             '/mgr',
             static function (RouteCollectorProxy $group) {
-                $group->any('/file/{uuid}', File::class);
-                $group->any('/image/{uuid}', Image::class);
-                $group->any('/forms[/{id:\d+}]', Forms::class);
-                $group->any('/submissions[/{id:\d+}]', Submissions::class);
-                $group->any('/emails[/{id:\d+}]', Emails::class);
-                $group->any('/elements/chunks[/{id:\d+}]', Chunks::class);
-                $group->any('/elements/snippets[/{id:\d+}]', Snippets::class);
+                $group->any('/version', Controllers\Mgr\Version::class);
+                $group->any('/file/{uuid}', Controllers\Mgr\File::class);
+                $group->any('/image/{uuid}', Controllers\Mgr\Image::class);
+                $group->any('/forms[/{id:\d+}]', Controllers\Mgr\Forms::class);
+                $group->any('/submissions[/{id:\d+}]', Controllers\Mgr\Submissions::class);
+                $group->any('/emails[/{id:\d+}]', Controllers\Mgr\Emails::class);
+                $group->any('/elements/chunks[/{id:\d+}]', Controllers\Mgr\Elements\Chunks::class);
+                $group->any('/elements/snippets[/{id:\d+}]', Controllers\Mgr\Elements\Snippets::class);
             }
         )->add(Mgr::class);
 
         $app->group(
             '/web',
             static function (RouteCollectorProxy $group) {
-                $group->map(['OPTIONS', 'POST'], '/forms/{token}', WebForms::class);
-                $group->map(['OPTIONS', 'POST', 'DELETE'], '/forms/{token}/files[/{uuid}]', Files::class);
-                $group->map(['OPTIONS', 'GET'], '/custom/{snippet}', Custom::class);
+                $group->map(['OPTIONS', 'POST'], '/forms/{token}', Controllers\Web\Forms::class);
+                $group->map(['OPTIONS', 'POST', 'DELETE'], '/forms/{token}/files[/{uuid}]', Controllers\Web\Files::class);
+                $group->map(['OPTIONS', 'GET'], '/custom/{snippet}', Controllers\Web\Custom::class);
             }
         );
     }
