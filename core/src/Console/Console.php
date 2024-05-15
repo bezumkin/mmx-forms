@@ -15,23 +15,21 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Console extends Application
 {
     protected modX $modx;
-    protected App $app;
 
     public function __construct(modX $modx)
     {
         parent::__construct(App::NAME);
         $this->modx = $modx;
-        $this->app = new App($modx);
     }
 
     public function doRun(InputInterface $input, OutputInterface $output)
     {
         if (!$this->modx->services->has('mmxDatabase')) {
             try {
-                new \MMX\Database\App($this->modx);
-                $install = new \MMX\Database\Console\Command\Install($this->modx);
+                $cli = new \MMX\Database\Console\Console($this->modx);
                 $output->writeln('<info>Trying to install mmx/database...</info>');
-                $install->run($input, $output);
+                $cli->doRun($input, $output);
+                $output->writeln('<info>Done! Continue to install ' . App::NAME . '</info>');
             } catch (\Throwable $e) {
                 $output->writeln('<error>Could not load mmxDatabase service</error>');
                 $output->writeln('<info>Please run "composer exec mmx-database install"</info>');
