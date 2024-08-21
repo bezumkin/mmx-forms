@@ -39,4 +39,11 @@ export default withMmx('mmx-forms', {
       },
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        quietDeps: true,
+      },
+    },
+  },
 })
