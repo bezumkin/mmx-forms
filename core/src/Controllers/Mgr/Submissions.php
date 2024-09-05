@@ -27,6 +27,9 @@ class Submissions extends ModelController
                 $c->where('title', 'LIKE', "%$query%");
             });
         }
+        if ($date = $this->getProperty('date')) {
+            $c->whereBetween('submitted_at', [$date[0] . ' 00:00:00', $date[1] . ' 23:59:59']);
+        }
 
         return $c;
     }

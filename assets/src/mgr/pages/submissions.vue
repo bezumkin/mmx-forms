@@ -8,6 +8,13 @@
     sort="id"
     dir="desc"
   >
+    <template #header-start>
+      <BButton @click="() => onExport()">{{ $t('actions.export') }}</BButton>
+    </template>
+    <template #header-middle>
+      <MmxInputDatePicker v-model="filters.date" />
+    </template>
+
     <RouterView />
 
     <MmxConfirm v-if="generating > 0" ok-variant="warning" :on-ok="generateEmails" @hidden="generating = 0">
@@ -37,11 +44,17 @@ const tableActions = computed(() => {
   ]
 })
 
-const filters = ref({query: ''})
+const filters = ref({query: '', date: []})
 const generating = ref(0)
 
 function onGenerate(item: Record<string, any>) {
   generating.value = item.id
+}
+
+function onExport() {
+  const params = table.value.getParams()
+  console.log(params)
+  window.open('/' + getNamespace() + '/' + url + '/export?' + params)
 }
 
 async function generateEmails() {

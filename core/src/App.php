@@ -117,6 +117,7 @@ class App
                 $group->any('/image/{uuid}', Controllers\Mgr\Image::class);
                 $group->any('/forms[/{id:\d+}]', Controllers\Mgr\Forms::class);
                 $group->any('/submissions[/{id:\d+}]', Controllers\Mgr\Submissions::class);
+                $group->any('/submissions/export', Controllers\Mgr\Submissions\Export::class);
                 $group->any('/emails[/{id:\d+}]', Controllers\Mgr\Emails::class);
                 $group->any('/elements/chunks[/{id:\d+}]', Controllers\Mgr\Elements\Chunks::class);
                 $group->any('/elements/snippets[/{id:\d+}]', Controllers\Mgr\Elements\Snippets::class);

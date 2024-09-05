@@ -12,7 +12,7 @@
   "dependencies": {
     "@codemirror/lang-html": "^6.4.8",
     "@codemirror/lang-javascript": "^6.2.2",
-    "@vesp/mmx-frontend": "^1.8.0",
+    "@vesp/mmx-frontend": "^2.0.0",
     "@vueform/vueform": "^1.9.1",
     "vue-codemirror": "^6.1.1"
   },

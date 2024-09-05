@@ -21,6 +21,7 @@ $_tmp = [
         'view' => 'View',
         'generate' => 'Generate',
         'delete_unsent' => 'Delete unsent',
+        'export' => 'Export',
     ],
     'models' => [
         'form' => [
@@ -83,13 +84,41 @@ $_tmp = [
         ],
     ],
     'components' => [
-        'no_data' => 'Nothing to display',
-        'no_results' => 'Nothing found',
-        'records' => 'No records | 1 record | {total} records',
-        'query' => 'Search...',
-        'delete' => [
+        'confirm' => [
             'title' => 'Confirmation required',
-            'confirm' => 'Are you sure you want to delete this entry?',
+            'message' => 'Are you sure?',
+        ],
+        'table' => [
+            'no_data' => 'Nothing to display',
+            'no_results' => 'Nothing found',
+            'records' => 'No records | 1 record | {total} records',
+            'query' => 'Search...',
+            'delete' => [
+                'title' => 'Confirmation required',
+                'confirm' => 'Are you sure you want to delete this entry?',
+            ],
+        ],
+        'datePicker' => [
+            'placeholder_date' => 'Choose a date',
+            'placeholder_range' => 'Choose a period',
+            'months' => [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December',
+            ],
+            'monthsShort' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            'weekdays' => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            'weekdaysShort' => ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            'weekdaysMin' => ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
         ],
     ],
     'snippets' => [
