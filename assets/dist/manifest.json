@@ -66,7 +66,7 @@
     ]
   },
   "src/mgr.ts": {
-    "file": "assets/mgr-C0qtTGQY.js",
+    "file": "assets/mgr-DillfSKf.js",
     "name": "mgr",
     "src": "src/mgr.ts",
     "isEntry": true,
@@ -119,7 +119,7 @@
     ]
   },
   "src/mgr/pages/submissions.vue": {
-    "file": "assets/submissions-vWB_didg.js",
+    "file": "assets/submissions-DRTGk1HY.js",
     "name": "submissions",
     "src": "src/mgr/pages/submissions.vue",
     "isDynamicEntry": true,
@@ -134,7 +134,7 @@
     ]
   },
   "src/mgr/pages/submissions/[id]/view.vue": {
-    "file": "assets/view-Dlw4wtD4.js",
+    "file": "assets/view-DpMOyqfq.js",
     "name": "view",
     "src": "src/mgr/pages/submissions/[id]/view.vue",
     "isDynamicEntry": true,

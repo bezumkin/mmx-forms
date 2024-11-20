@@ -9,7 +9,14 @@
     dir="desc"
   >
     <template #header-start>
-      <BButton @click="() => onExport()">{{ $t('actions.export') }}</BButton>
+      <div class="d-flex gap-2 mb-2 mb-md-0">
+        <MmxInputComboBox
+          v-model="filters.form_id"
+          url="mgr/forms"
+          :placeholder="$t('models.submission.export_placeholder')"
+        />
+        <BButton :disabled="!filters.form_id" @click="() => onExport()">{{ $t('actions.export') }}</BButton>
+      </div>
     </template>
     <template #header-middle>
       <MmxInputDatePicker v-model="filters.date" />
@@ -44,7 +51,7 @@ const tableActions = computed(() => {
   ]
 })
 
-const filters = ref({query: '', date: []})
+const filters = ref({query: '', date: [], form_id: null})
 const generating = ref(0)
 
 function onGenerate(item: Record<string, any>) {

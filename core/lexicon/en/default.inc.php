@@ -69,6 +69,7 @@ $_tmp = [
             'values' => 'Values',
             'submitted_at' => 'Submitted At',
             'confirm_generate' => 'Are you sure you want to re-generate emails for this form submission?<br><br>This will delete all unsent emails for this submission, and then create new ones with the current form settings.',
+            'export_placeholder' => 'Select form to export',
         ],
         'email' => [
             'title_one' => 'Email',
