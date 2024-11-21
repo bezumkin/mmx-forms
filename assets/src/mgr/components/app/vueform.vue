@@ -34,8 +34,9 @@ const props = defineProps({
 const properties = computed(() => {
   const data: Record<string, any> = {...props}
   delete data.disabledFields
-  const parsed = useCheckSchema({schema: props.schema})
-  if (parsed) {
+  const json = useCheckSchema(props.schema)
+  if (json) {
+    const parsed = JSON.parse(json) as Record<string, any>
     if ('schema' in parsed) {
       const schema = prepareSchema(parsed.schema)
       return {...parsed, ...data, schema}

@@ -11,7 +11,7 @@
     <BTabs content-class="pt-2 mb-3">
       <BTab :title="$t('models.form.schema')">
         <div class="form-control p-0 overflow-hidden">
-          <Codemirror v-model="record.schema" :extensions="[javascript()]" :style="{height: '400px'}" />
+          <Codemirror v-model="record.schema" :extensions="[javascript(), json()]" :style="{height: '400px'}" />
         </div>
       </BTab>
       <BTab :title="$t('models.form.preview')" :disabled="!canPreview" lazy>
@@ -45,6 +45,7 @@
 <script setup lang="ts">
 import {Codemirror} from 'vue-codemirror'
 import {javascript} from '@codemirror/lang-javascript'
+import {json} from '@codemirror/lang-json'
 
 const props = defineProps({
   modelValue: {
@@ -57,16 +58,29 @@ const $t = useLexicon
 const emit = defineEmits(['update:modelValue'])
 const record: WritableComputedRef<Record<string, any>> = computed({
   get() {
-    return props.modelValue
+    const value = props.modelValue
+    if (value.schema) {
+      // Convert old schema to JSON format
+      try {
+        JSON.parse(value.schema)
+      } catch (e) {
+        const schema = useCheckSchema(value.schema)
+        if (schema) {
+          value.schema = schema
+        }
+      }
+    }
+    return value
   },
   set(newValue) {
     emit('update:modelValue', newValue)
   },
 })
-const canPreview = computed(() => Boolean(useCheckSchema(record.value)))
+const canPreview = computed(() => Boolean(useCheckSchema(record.value?.schema)))
 
 function verify(values: Record<string, any>) {
-  return useCheckSchema(values) ? values : useLexicon('errors.form.schema')
+  const schema = useCheckSchema(values.schema)
+  return schema ? {...values, schema} : useLexicon('errors.form.schema')
 }
 
 defineExpose({verify})

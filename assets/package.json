@@ -12,8 +12,9 @@
   "dependencies": {
     "@codemirror/lang-html": "^6.4.8",
     "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-json": "^6.0.1",
     "@vesp/mmx-frontend": "^2.0.0",
-    "@vueform/vueform": "^1.9.1",
+    "@vueform/vueform": "^1.11.0",
     "vue-codemirror": "^6.1.1"
   },
   "devDependencies": {
@@ -26,7 +27,7 @@
     "sass": "^1.61.0",
     "unplugin-auto-import": "^0.15.2",
     "unplugin-vue-components": "^0.24.1",
-    "vite": "^5.1.5",
+    "vite": "^5.4.6",
     "vite-plugin-eslint": "^1.8.1"
   }
 }

@@ -57,10 +57,12 @@ $_tmp = [
                 'snippet' => 'Get action from a snippet',
                 'snippet_desc' => 'Snippet will be called after saving the user data. It will receive an array with 2 keys: "form" and "values", and should return an array of format ["type" => "reset|message|redirect", "value" => "string|html|url"]',
             ],
-            'help_text' => 'Please use <a href="https://builder.vueform.com/demo?v=dev" target="_blank">Vueform Builder</a> to create a form and then paste its schema here.<br/><br/>' .
-                'Go to the "Export" tab in the right pane, then select the "Schema Object" output and copy the contents of the "vueform" variable of the code in the middle pane.<br/><br/>' .
-                "The value should be something like: <pre><code>{\n  schema: {\n    name: {type: 'text', label: 'Your name', rules: ['required']},\n    submit: {type: 'button', buttonLabel: 'Submit!', submits: true},\n  }\n}</code></pre>" .
-                'The preview tab only works if the schema can be parsed correctly. Which does not guarantee the correctness of this scheme.',
+            'help_text' => 'Please use <a href="https://builder.vueform.com/demo?v=simple" target="_blank">Vueform Builder</a> to create a form and then paste its JSON schema here.<br/><br/>' .
+                'Find "Export / Import" button on the right side of form, then copy the JSON data.<br/><br/>' .
+                "The value should be something like: <pre><code>{\n  \"schema\": {\n    \"name\": {\"type\": \"text\", \"label\": \"Your name\", \"rules\": [\"required\"]},\n    \"submit\": {\"type\": \"button\", \"buttonLabel\": \"Submit!\", \"submits\": true},\n  }\n}</code></pre>".
+                'The preview tab only works if the schema can be parsed correctly. Which does not guarantee the correctness of this scheme.<br/>' .
+                'The required schema sections such as "form", "export", "theme" and "builder" will be added automatically when saved, for compatibility with the Vueform constructor.'
+
         ],
         'submission' => [
             'title_one' => 'Submission',
