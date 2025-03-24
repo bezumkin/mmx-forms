@@ -63,7 +63,7 @@ class Forms extends Controller
         }
 
         /** @var Submission $submission */
-        $submission = $form->Submissions()->create(['values' => $values]);
+        $submission = $form->Submissions()->create(['values' => $values, 'context_key' => $this->modx?->context?->key]);
         foreach ($files as $file) {
             /** @var File $file */
             $file->update(['submission_id' => $submission->id, 'temporary' => false]);

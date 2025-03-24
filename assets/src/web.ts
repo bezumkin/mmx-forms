@@ -12,8 +12,9 @@ setNamespace('mmx-forms')
 
 document.addEventListener('DOMContentLoaded', () => {
   const locale = window.mmxForms.locale || 'en'
+  const context = window.mmxForms.context || 'web'
   window.mmxForms.forms.forEach((form: Record<string, any>) => {
-    createApp(App, {id: form.id, schema: form.schema, locale})
+    createApp(App, {id: form.id, schema: form.schema, locale, context})
       .use(vueForm, vueFormConfig)
       .use(createMmxToast())
       .mount('#mmx-forms-' + form.id)

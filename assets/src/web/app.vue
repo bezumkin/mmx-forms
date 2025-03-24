@@ -21,6 +21,10 @@ const props = defineProps({
     type: String,
     default: 'en',
   },
+  context: {
+    type: String,
+    default: 'web',
+  },
 })
 
 const record = ref({})
@@ -45,7 +49,7 @@ const properties = computed(() => {
 async function onSubmit() {
   loading.value = true
   try {
-    const data = await usePost('web/forms/' + formKey.value, record.value)
+    const data = await usePost('web/forms/' + formKey.value + '?context=' + props.context, record.value)
     form.value.reset()
     if (data.id) {
       formKey.value = data.id

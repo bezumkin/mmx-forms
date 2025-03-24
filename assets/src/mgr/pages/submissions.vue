@@ -60,7 +60,7 @@ function onGenerate(item: Record<string, any>) {
 
 function onExport() {
   const params = table.value.getParams()
-  console.log(params)
+  // console.log(params)
   window.open('/' + getNamespace() + '/' + url + '/export?' + params)
 }
 

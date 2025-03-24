@@ -20,6 +20,7 @@ class Console extends Application
     {
         parent::__construct(App::NAME);
         $this->modx = $modx;
+        new App($modx);
     }
 
     public function doRun(InputInterface $input, OutputInterface $output)

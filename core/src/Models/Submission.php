@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use MMX\Database\Models\Chunk;
+use MMX\Database\Models\Context;
 use MMX\Forms\App;
 
 /**
  * @property int $id
  * @property int $form_id
  * @property array $values
+ * @property ?string $context_key
  * @property Carbon $submitted_at
  *
  * @property-read Form $Form
+ * @property-read Context $Context
  * @property-read Email[] $Emails
  * @property-read File[] $Files
  */
@@ -42,6 +45,10 @@ class Submission extends Model
     public function Files(): HasMany
     {
         return $this->hasMany(File::class);
+    }
+
+    public function Context(): BelongsTo {
+        return $this->belongsTo(Context::class, 'context_key', 'key');
     }
 
     public function createEmails(bool $send = false): void

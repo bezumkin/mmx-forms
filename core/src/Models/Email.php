@@ -9,6 +9,7 @@ use InlineStyle\InlineStyle;
 use MMX\Forms\App;
 use MODX\Revolution\Mail\modMail;
 use MODX\Revolution\Mail\modPHPMailer;
+use MODX\Revolution\modX;
 
 /**
  * @property int $id
@@ -49,7 +50,13 @@ class Email extends Model
 
     public function send(): ?string
     {
+        /** @var modX $modx */
         $modx = App::getContainer()->get('modx');
+        $submission = $this->Submission;
+        if ($submission->context_key && $submission->context_key !== $modx->context->key) {
+            $modx->switchContext($submission->context_key);
+        }
+
         $service = new modPHPMailer($modx);
         $service->setHTML(true);
         $service->address('to', $this->to);

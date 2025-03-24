@@ -4,6 +4,7 @@ namespace MMX\Forms;
 
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
+use MMX\Database\Models\Context;
 use MMX\Forms\Middlewares\Mgr;
 use MMX\Forms\Models\Form;
 use MMX\Forms\Services\Filesystem;
@@ -78,6 +79,7 @@ class App
         $locale = $this->modx->context?->getOption('cultureKey') ?: 'en';
         $data = [
             'locale' => $locale,
+            'context' => $this->modx->context->key,
             'lexicon' => $this->getLexicon($locale, ['success', 'errors']),
             'forms' => [],
         ];
@@ -100,6 +102,12 @@ class App
 
         try {
             $_SERVER['QUERY_STRING'] = html_entity_decode($_SERVER['QUERY_STRING']);
+            if (!empty($_GET['context']) && $context = Context::query()->where('key', $_GET['context'])->first()) {
+                /** @var Context $context */
+                if ($this->modx->context->key !== $context->key) {
+                    $this->modx->switchContext($context->key);
+                }
+            }
             $app->run();
         } catch (\Throwable $e) {
             http_response_code($e->getCode() ?: 500);
