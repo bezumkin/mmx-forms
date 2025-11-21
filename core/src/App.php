@@ -85,9 +85,8 @@ class App
         ];
 
         $id = $form->getFormKey();
-        $schema = preg_replace('#\n|\r\n|\t#', '', $form->schema);
         $this->modx->regClientHTMLBlock('<script>mmxForms=' . json_encode($data) . '</script>');
-        $this->modx->regClientHTMLBlock("<script>mmxForms.forms.push({id:'$id',schema:$schema})</script>");
+        $this->modx->regClientHTMLBlock("<script>mmxForms.forms.push({id:'$id'})</script>");
 
         return '<div id="mmx-forms-' . $id . '" class="mmx-forms"></div>';
     }
@@ -135,7 +134,7 @@ class App
         $app->group(
             '/web',
             static function (RouteCollectorProxy $group) {
-                $group->map(['OPTIONS', 'POST'], '/forms/{token}', Controllers\Web\Forms::class);
+                $group->map(['OPTIONS', 'POST', 'GET'], '/forms/{token}', Controllers\Web\Forms::class);
                 $group->map(['OPTIONS', 'POST', 'DELETE'], '/forms/{token}/files[/{uuid}]', Controllers\Web\Files::class);
                 $group->map(['OPTIONS', 'GET'], '/custom/{snippet}', Controllers\Web\Custom::class);
             }

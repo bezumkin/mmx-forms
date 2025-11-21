@@ -113,15 +113,9 @@ class Forms extends Controller
         return $files;
     }
 
-    /*
     public function get(): ResponseInterface
     {
-        $token = $this->getToken();
-        if (!$token || !$token->Form->active) {
-            return $this->failure('Not Found', 404);
-        }
-
-        return $this->success($token->Form->schema);
-    } */
+        return $this->success(json_decode($this->form->schema, true));
+    }
 
 }
