@@ -14,7 +14,7 @@
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/lang-json": "^6.0.1",
     "@vesp/mmx-frontend": "^2.0.0",
-    "@vueform/vueform": "^1.13.6",
+    "@vueform/vueform": "^1.13.10",
     "vue-codemirror": "^6.1.1"
   },
   "devDependencies": {

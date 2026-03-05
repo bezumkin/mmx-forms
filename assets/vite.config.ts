@@ -42,6 +42,8 @@ export default withMmx('mmx-forms', {
   css: {
     preprocessorOptions: {
       scss: {
+        api: 'modern-compiler',
+        silenceDeprecations: ['import'],
         quietDeps: true,
       },
     },
