@@ -30,6 +30,9 @@ class Submissions extends ModelController
         if ($date = $this->getProperty('date')) {
             $c->whereBetween('submitted_at', [$date[0] . ' 00:00:00', $date[1] . ' 23:59:59']);
         }
+        if ($formId = (int)$this->getProperty('form_id')) {
+            $c->where('form_id', $formId);
+        }
 
         return $c;
     }
