@@ -13,6 +13,7 @@ class Export extends Submissions
 {
     use ExportControllerTrait;
 
+    protected Form $form;
     protected $filename = 'submissions';
     protected $titles = [
         'id' => 'Id',
@@ -25,17 +26,17 @@ class Export extends Submissions
     {
         $formId = $this->getProperty('form_id');
         /** @var Form $form */
-        if (!$formId || !$form = Form::query()->find($formId)) {
+        if (!$formId || !$this->form = Form::query()->find($formId)) {
             return $this->failure('Not Found', 404);
         }
 
-        $c = $form->submissions()->getQuery();
+        $c = $this->form->submissions()->getQuery();
         $c = $this->beforeCount($c);
         // $c = $this->afterCount($c);
         $c = $this->addSorting($c);
         $c->limit($this->getProperty('limit', 100000));
 
-        $columns = [];
+        $columns = $values = [];
         /** @var Submission $submission */
         foreach ($c->cursor() as $submission) {
             $keys = array_keys($submission->values);
@@ -51,7 +52,7 @@ class Export extends Submissions
         $this->titles = array_combine($columns, array_map(static function ($v) {
             return implode(' ', array_map('ucfirst', explode('_', $v)));
         }, $columns));
-        $this->filename .= '-' . $form->id;
+        $this->filename .= '-' . $this->form->id;
 
         try {
             $this->write($this->titles);
@@ -78,6 +79,9 @@ class Export extends Submissions
         $array = [];
         foreach ($this->titles as $key => $title) {
             $value = $parent['values'][$key] ?? self::getValue($object, $key);
+            if (is_array($value)) {
+                $value = $this->prepareArray($key, $value);
+            }
             if ($key === 'submitted_at') {
                 $value = date('d.m.Y H:i:s', strtotime($value));
             }
@@ -85,5 +89,30 @@ class Export extends Submissions
         }
 
         return $array;
+    }
+
+    public function prepareArray(string $key, array $values): string
+    {
+        $schema = json_decode($this->form->schema, true);
+        if ($schema['schema']) {
+            $schema = $schema['schema'];
+        }
+
+        if (isset($schema[$key]['items']) && is_array(current($schema[$key]['items']))) {
+            $items = $schema[$key]['items'];
+            foreach ($values as $idx => $value) {
+                foreach ($items as $item) {
+                    if ($item['value'] === $value) {
+                        $values[$idx] = $item['label'];
+                    }
+                }
+            }
+        }
+
+        $values = array_map(static function ($val) {
+            return $val === null ? 'null' : $val;
+        }, $values);
+
+        return implode(', ', $values);
     }
 }
